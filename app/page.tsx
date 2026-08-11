@@ -4,11 +4,14 @@ import PickupForm from "@/components/PickupForm";
 import GarmentCard from "@/components/GarmentCard";
 import MobileNav from "@/components/MobileNav";
 import FloatingActions from "@/components/FloatingActions";
-import { SITE_URL } from "@/lib/site";
+
 import Image from "next/image";
+
+import { SITE_URL } from "@/lib/site";
 
 import {
   ArrowRight,
+  CheckCircle2,
   MapPin,
   ShieldCheck,
   Sparkles,
@@ -16,36 +19,41 @@ import {
   Truck,
 } from "lucide-react";
 
+/* =========================================================
+   DATA
+========================================================= */
+
 const services = [
   {
     name: "Dry Cleaning",
     icon: "👔",
     description:
-      "Professional cleaning and garment care for your everyday and special clothing.",
+      "Professional garment care for everyday clothing, premium wear and special-occasion outfits.",
     href: "/dry-cleaning-ranchi",
   },
   {
     name: "Steam Press",
     icon: "♨️",
     description:
-      "Give your garments a crisp, polished and premium finish.",
+      "A crisp, polished finish designed to keep garments looking refined and well presented.",
     href: "/steam-press-ranchi",
   },
   {
     name: "Garment Polish",
     icon: "✨",
     description:
-      "Special care to help maintain the appearance of your garments.",
+      "Special finishing care to refresh and maintain the appearance of selected garments.",
     href: "/garment-polish-ranchi",
   },
   {
     name: "Darning",
     icon: "🧵",
     description:
-      "Garment repair and darning services to help extend the life of your clothes.",
+      "Thoughtful garment repair and darning to help extend the usable life of your clothes.",
     href: "/darning-ranchi",
   },
 ];
+
 const garments = [
   {
     name: "Bridal Wear",
@@ -101,6 +109,33 @@ const branches = [
   },
 ];
 
+const processSteps = [
+  {
+    step: "01",
+    title: "Book",
+    text: "Choose your preferred service and request a convenient home pickup.",
+  },
+  {
+    step: "02",
+    title: "Pickup",
+    text: "Your garments are collected from your preferred location in Ranchi.",
+  },
+  {
+    step: "03",
+    title: "Expert Care",
+    text: "Your garments receive appropriate professional cleaning and finishing.",
+  },
+  {
+    step: "04",
+    title: "Delivery",
+    text: "Your garments are carefully returned after the service is completed.",
+  },
+];
+
+/* =========================================================
+   PAGE
+========================================================= */
+
 export default function Home() {
   const jsonLd = {
     "@context": "https://schema.org",
@@ -111,7 +146,7 @@ export default function Home() {
     description:
       "Professional dry cleaning, steam press, garment care and home pickup services in Ranchi, Jharkhand.",
 
-    url: "SITE_URL",
+    url: SITE_URL,
 
     telephone: "+91-9507111333",
 
@@ -166,7 +201,9 @@ export default function Home() {
 
   return (
     <>
-      {/* ================= STRUCTURED DATA ================= */}
+      {/* =====================================================
+          STRUCTURED DATA
+      ===================================================== */}
 
       <script
         type="application/ld+json"
@@ -175,141 +212,141 @@ export default function Home() {
         }}
       />
 
-      {/* ================= NAVIGATION ================= */}
+      {/* =====================================================
+          NAVIGATION
+      ===================================================== */}
 
-      <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/95 backdrop-blur">
+      <header className="sticky top-0 z-50 border-b border-[#E8E2D6] bg-[#F8F5EE]/95 backdrop-blur-xl">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-12">
-
-          {/* Brand */}
+          {/* BRAND */}
 
           <a href="/" className="group">
             <div className="flex items-center gap-3">
-
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-600 text-lg font-bold text-white shadow-sm">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#163A32] text-lg font-semibold text-white shadow-sm transition group-hover:bg-[#102A25]">
                 N
               </div>
 
               <div>
-                <p className="text-lg font-bold tracking-tight text-gray-950">
+                <p className="text-lg font-semibold tracking-tight text-[#171C1A]">
                   NewLife Dryclean
                 </p>
 
-                <p className="text-xs font-medium tracking-wide text-gray-500">
+                <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#88785B]">
                   Premium Garment Care • Ranchi
                 </p>
               </div>
-
             </div>
           </a>
 
-          {/* Desktop Navigation */}
+          {/* DESKTOP MENU */}
 
-          <div className="hidden items-center gap-7 text-sm font-medium text-gray-700 lg:flex">
-
+          <div className="hidden items-center gap-8 text-sm font-medium text-[#4F5954] lg:flex">
             <a
               href="#services"
-              className="transition hover:text-blue-600"
+              className="transition hover:text-[#163A32]"
             >
               Services
             </a>
 
             <a
               href="#garments"
-              className="transition hover:text-blue-600"
+              className="transition hover:text-[#163A32]"
             >
               Garments
             </a>
 
             <a
               href="/about"
-              className="transition hover:text-blue-600"
+              className="transition hover:text-[#163A32]"
             >
               About
             </a>
 
             <a
               href="#how-it-works"
-              className="transition hover:text-blue-600"
+              className="transition hover:text-[#163A32]"
             >
               How It Works
             </a>
 
             <a
               href="#reviews"
-              className="transition hover:text-blue-600"
+              className="transition hover:text-[#163A32]"
             >
               Reviews
             </a>
 
             <a
               href="#locations"
-              className="transition hover:text-blue-600"
+              className="transition hover:text-[#163A32]"
             >
               Locations
             </a>
-
           </div>
 
-          {/* Navigation Actions */}
+          {/* ACTIONS */}
 
           <div className="flex items-center gap-3">
-
             <a
               href="#pickup"
-              className="hidden items-center gap-2 rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-600/20 transition hover:-translate-y-0.5 hover:bg-blue-700 sm:inline-flex"
+              className="hidden items-center gap-2 rounded-full bg-[#163A32] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-black/10 transition hover:-translate-y-0.5 hover:bg-[#102A25] sm:inline-flex"
             >
               Book Pickup
               <ArrowRight size={16} />
             </a>
 
             <MobileNav />
-
           </div>
-
         </nav>
       </header>
 
       <main>
+        {/* =====================================================
+            HERO
+        ===================================================== */}
 
-        {/* ================= HERO ================= */}
+        <section className="relative overflow-hidden bg-gradient-to-b from-[#F2ECDD] via-[#F8F5EE] to-white px-6 pb-28 pt-16 md:px-12 md:pb-36 md:pt-24">
+          {/* BACKGROUND DECORATION */}
 
-        <section className="relative overflow-hidden bg-gradient-to-b from-blue-50 via-white to-white px-6 pb-24 pt-16 md:px-12 md:pb-32 md:pt-24">
+          <div className="pointer-events-none absolute -right-40 -top-40 h-[520px] w-[520px] rounded-full bg-[#DCE6DD]/60 blur-3xl" />
 
-          <div className="pointer-events-none absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full bg-blue-100/70 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-52 -left-40 h-[420px] w-[420px] rounded-full bg-[#E9DDC3]/50 blur-3xl" />
 
-          <div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2">
-
+          <div className="relative mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
             {/* LEFT */}
 
             <div>
-
-              <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-4 py-2 text-sm font-semibold text-blue-700 shadow-sm">
-                <Sparkles size={16} />
-                Premium Dry Cleaning in Ranchi
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#DED4C0] bg-white/70 px-4 py-2 text-sm font-semibold text-[#163A32] shadow-sm backdrop-blur">
+                <Sparkles
+                  size={16}
+                  className="text-[#A98645]"
+                />
+                Premium Garment Care in Ranchi
               </div>
 
-              <h1 className="mt-7 max-w-3xl text-5xl font-bold leading-[1.05] tracking-tight text-gray-950 md:text-6xl lg:text-7xl">
+              <h1 className="mt-8 max-w-3xl text-5xl font-semibold leading-[1.03] tracking-[-0.045em] text-[#171C1A] md:text-6xl lg:text-7xl">
                 Premium Care
                 <br />
                 for Clothes You
-                <span className="block text-blue-600">
+                <span className="block text-[#163A32]">
                   Truly Value.
                 </span>
               </h1>
 
-              <p className="mt-7 max-w-xl text-lg leading-8 text-gray-600">
-                Professional dry cleaning, steam pressing, garment care and
-                convenient home pickup for bridal wear, suits, designer outfits
-                and everyday clothing across Ranchi.
+              <p className="mt-7 max-w-xl text-lg leading-8 text-[#66706B]">
+                Thoughtful garment care for bridal wear, formal suits,
+                designer outfits and everyday clothing — with convenient
+                home pickup across Ranchi.
               </p>
 
-              <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+              {/* CTA */}
 
+              <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                 <a
                   href="#pickup"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-8 py-4 font-semibold text-white shadow-xl shadow-blue-600/20 transition hover:-translate-y-1 hover:bg-blue-700"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-[#163A32] px-8 py-4 font-semibold text-white shadow-xl shadow-black/10 transition hover:-translate-y-1 hover:bg-[#102A25]"
                 >
-                  Book Home Pickup
+                  Schedule Home Pickup
                   <ArrowRight size={18} />
                 </a>
 
@@ -317,453 +354,393 @@ export default function Home() {
                   href="https://wa.me/919507111333"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-gray-200 bg-white px-8 py-4 font-semibold text-gray-800 shadow-sm transition hover:-translate-y-1 hover:border-gray-300 hover:shadow-md"
+                  className="inline-flex items-center justify-center rounded-full border border-[#D8D0C1] bg-white/75 px-8 py-4 font-semibold text-[#171C1A] transition hover:-translate-y-1 hover:bg-white hover:shadow-md"
                 >
                   WhatsApp Us
                 </a>
-
               </div>
 
-              {/* Trust Points */}
+              {/* TRUST */}
 
-              <div className="mt-10 grid max-w-xl gap-4 sm:grid-cols-3">
-
-                <div className="flex items-center gap-2 text-sm font-medium text-gray-600">
-                  <Truck size={18} className="text-blue-600" />
+              <div className="mt-11 grid max-w-xl gap-4 sm:grid-cols-3">
+                <div className="flex items-center gap-2 text-sm font-medium text-[#58635E]">
+                  <Truck
+                    size={18}
+                    className="text-[#A98645]"
+                  />
                   Home Pickup
                 </div>
 
-                <div className="flex items-center gap-2 text-sm font-medium text-gray-600">
-                  <ShieldCheck size={18} className="text-blue-600" />
+                <div className="flex items-center gap-2 text-sm font-medium text-[#58635E]">
+                  <ShieldCheck
+                    size={18}
+                    className="text-[#A98645]"
+                  />
                   Expert Handling
                 </div>
 
-                <div className="flex items-center gap-2 text-sm font-medium text-gray-600">
-                  <MapPin size={18} className="text-blue-600" />
+                <div className="flex items-center gap-2 text-sm font-medium text-[#58635E]">
+                  <MapPin
+                    size={18}
+                    className="text-[#A98645]"
+                  />
                   3 Ranchi Branches
                 </div>
-
               </div>
 
-              {/* Google Trust */}
+              {/* REVIEWS */}
 
-              <div className="mt-10 flex flex-wrap items-center gap-4">
-
-                <div className="flex">
+              <div className="mt-10 flex flex-wrap items-center gap-4 border-t border-[#DED7CB] pt-8">
+                <div className="flex gap-1">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <Star
                       key={star}
-                      size={20}
-                      className="fill-amber-400 text-amber-400"
+                      size={18}
+                      className="fill-[#B89A5A] text-[#B89A5A]"
                     />
                   ))}
                 </div>
 
                 <div>
-                  <p className="text-sm font-semibold text-gray-900">
+                  <p className="text-sm font-semibold text-[#171C1A]">
                     Trusted by customers in Ranchi
                   </p>
 
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-[#77807C]">
                     Read genuine customer feedback on Google
                   </p>
                 </div>
-
               </div>
-
             </div>
 
-            {/* RIGHT */}
+            {/* RIGHT IMAGE */}
 
             <div className="relative">
-
-              <div className="relative overflow-hidden rounded-[2.5rem] border border-white bg-white p-2 shadow-2xl shadow-blue-900/10">
-
+              <div className="relative overflow-hidden rounded-[2.75rem] border border-white/80 bg-white p-2 shadow-[0_35px_90px_rgba(30,45,38,0.16)]">
                 <Image
                   src="/drycleaner.png"
-                  alt="Professional dry cleaning and premium garment care at NewLife Dryclean Ranchi"
+                  alt="Premium garment care at NewLife Dryclean Ranchi"
                   width={1200}
                   height={900}
                   priority
-                  className="h-[470px] w-full rounded-[2rem] object-cover md:h-[590px]"
+                  className="h-[480px] w-full rounded-[2.3rem] object-cover md:h-[610px]"
                 />
-
               </div>
 
-              <div className="absolute -bottom-6 left-5 rounded-2xl border border-gray-100 bg-white px-5 py-4 shadow-xl md:left-8">
+              {/* FLOATING CARD */}
 
+              <div className="absolute -bottom-7 left-5 rounded-2xl border border-[#E9E2D7] bg-[#FFFEFB]/95 px-5 py-4 shadow-[0_20px_50px_rgba(30,45,38,0.14)] backdrop-blur md:left-8">
                 <div className="flex items-center gap-3">
-
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#E8EEE9]">
                     <ShieldCheck
                       size={22}
-                      className="text-blue-600"
+                      className="text-[#163A32]"
                     />
                   </div>
 
                   <div>
-                    <p className="font-bold text-gray-950">
+                    <p className="font-semibold text-[#171C1A]">
                       Expert Garment Care
                     </p>
 
-                    <p className="text-sm text-gray-500">
-                      Professional cleaning process
+                    <p className="text-sm text-[#737C77]">
+                      Professional handling & finishing
                     </p>
                   </div>
-
                 </div>
-
               </div>
 
-              <div className="absolute right-4 top-8 hidden rounded-2xl border border-gray-100 bg-white/95 px-5 py-4 shadow-xl backdrop-blur md:block">
+              {/* SECOND CARD */}
 
-                <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">
+              <div className="absolute right-5 top-8 hidden rounded-2xl border border-[#E9E2D7] bg-[#FFFEFB]/95 px-5 py-4 shadow-xl backdrop-blur md:block">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#A98645]">
                   Home Pickup
                 </p>
 
-                <p className="mt-1 text-lg font-bold text-gray-950">
+                <p className="mt-1 text-lg font-semibold text-[#171C1A]">
                   Across Ranchi
                 </p>
-
               </div>
-
             </div>
-
           </div>
-
         </section>
 
-        {/* ================= SERVICES ================= */}
+        {/* =====================================================
+            SERVICES
+        ===================================================== */}
 
         <section
           id="services"
           className="bg-white px-6 py-28 md:px-12"
         >
-
           <div className="mx-auto max-w-7xl">
-
-            <div className="mb-14 text-center">
-
-              <p className="font-semibold uppercase tracking-[0.2em] text-blue-600">
+            <div className="mx-auto mb-16 max-w-3xl text-center">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#A98645]">
                 What We Do
               </p>
 
-              <h2 className="mt-3 text-4xl font-bold tracking-tight text-gray-950 md:text-5xl">
-                Professional Care for Every Garment
+              <h2 className="mt-4 text-4xl font-semibold tracking-[-0.03em] text-[#171C1A] md:text-5xl">
+                Professional Care for
+                <span className="block text-[#163A32]">
+                  Every Garment.
+                </span>
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-600">
-                Professional garment care designed to keep your clothes
-                looking fresh, clean and well maintained.
+              <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[#6A746F]">
+                Thoughtful garment-care services designed around cleaning,
+                finishing, presentation and convenience.
               </p>
-
             </div>
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-
               {services.map((service) => (
                 <ServiceCard
                   key={service.name}
                   service={service}
                 />
               ))}
-
             </div>
-
           </div>
-
         </section>
 
-        {/* ================= GARMENTS ================= */}
+        {/* =====================================================
+            GARMENTS
+        ===================================================== */}
 
         <section
           id="garments"
-          className="bg-gray-50 px-6 py-28 md:px-12"
+          className="bg-[#F8F5EE] px-6 py-28 md:px-12"
         >
-
           <div className="mx-auto max-w-7xl">
-
-            <div className="mb-14 text-center">
-
-              <p className="font-semibold uppercase tracking-[0.2em] text-blue-600">
+            <div className="mx-auto mb-16 max-w-3xl text-center">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#A98645]">
                 Specialized Care
               </p>
 
-              <h2 className="mt-3 text-4xl font-bold tracking-tight text-gray-950 md:text-5xl">
-                Garments We Care For
+              <h2 className="mt-4 text-4xl font-semibold tracking-[-0.03em] text-[#171C1A] md:text-5xl">
+                Garments Worth
+                <span className="text-[#163A32]">
+                  {" "}
+                  Caring For.
+                </span>
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-600">
-                From everyday clothing to special occasion outfits,
-                every garment deserves the right care.
+              <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[#6A746F]">
+                From everyday essentials to your most valuable
+                occasion wear, every garment deserves appropriate care.
               </p>
-
             </div>
 
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-
               {garments.map((garment) => (
                 <GarmentCard
                   key={garment.name}
                   garment={garment}
                 />
               ))}
-
             </div>
-
           </div>
-
         </section>
 
-        {/* ================= WHY NEWLIFE ================= */}
+        {/* =====================================================
+            WHY NEWLIFE
+        ===================================================== */}
 
         <section
           id="about"
-          className="px-6 py-28 md:px-12"
+          className="bg-white px-6 py-28 md:px-12"
         >
-
-          <div className="mx-auto grid max-w-7xl gap-14 md:grid-cols-2 md:items-center">
-
+          <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-2 lg:items-center">
             {/* LEFT */}
 
             <div>
-
-              <p className="font-semibold uppercase tracking-[0.2em] text-blue-600">
-                Why NewLife Dryclean
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#A98645]">
+                Why NewLife
               </p>
 
-              <h2 className="mt-3 text-4xl font-bold leading-tight tracking-tight text-gray-950 md:text-5xl">
-                Expert Care for Every Garment
+              <h2 className="mt-4 max-w-xl text-4xl font-semibold leading-tight tracking-[-0.035em] text-[#171C1A] md:text-5xl">
+                Care That Respects
+                <span className="block text-[#163A32]">
+                  Every Detail.
+                </span>
               </h2>
 
-              <p className="mt-6 leading-8 text-gray-600">
-                Every garment is different. From delicate bridal wear
-                to formal suits and everyday clothing, professional
-                garment care helps maintain the look and feel of your clothes.
+              <p className="mt-7 max-w-xl leading-8 text-[#66706B]">
+                Every garment is different. Delicate bridal wear,
+                formal suits, designer clothing and everyday garments
+                can each require different levels of attention.
               </p>
 
-              <p className="mt-4 leading-8 text-gray-600">
-                NewLife Dryclean provides dry cleaning, steam press,
-                garment polish and darning services in Ranchi.
+              <p className="mt-4 max-w-xl leading-8 text-[#66706B]">
+                NewLife Dryclean combines professional garment care
+                with convenient local service across Ranchi.
               </p>
 
               <a
                 href="/about"
-                className="mt-8 inline-flex items-center gap-2 font-semibold text-blue-600 transition hover:gap-3 hover:text-blue-700"
+                className="mt-8 inline-flex items-center gap-2 border-b border-[#B89A5A] pb-1 font-semibold text-[#163A32] transition hover:gap-3"
               >
                 Discover Our Story
                 <ArrowRight size={17} />
               </a>
-
             </div>
 
-            {/* RIGHT */}
+            {/* FEATURES */}
 
             <div className="grid gap-5 sm:grid-cols-2">
+              {[
+                {
+                  title: "Advanced Cleaning",
+                  text: "Professional cleaning processes selected according to garment-care requirements.",
+                  icon: Sparkles,
+                },
+                {
+                  title: "Stain Attention",
+                  text: "Special attention to garment appearance and visible areas requiring extra care.",
+                  icon: CheckCircle2,
+                },
+                {
+                  title: "Fabric Care",
+                  text: "Care designed around fabric, finish and overall garment presentation.",
+                  icon: ShieldCheck,
+                },
+                {
+                  title: "Home Pickup",
+                  text: "Convenient pickup service designed around your schedule and location.",
+                  icon: Truck,
+                },
+              ].map((item) => {
+                const Icon = item.icon;
 
-              <div className="rounded-3xl border border-blue-100 bg-blue-50 p-7">
+                return (
+                  <div
+                    key={item.title}
+                    className="rounded-[2rem] border border-[#E9E2D7] bg-[#FCFAF6] p-7 transition duration-300 hover:-translate-y-1 hover:border-[#C9B589] hover:shadow-[0_24px_60px_rgba(28,40,35,0.08)]"
+                  >
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#E8EEE9]">
+                      <Icon
+                        size={23}
+                        className="text-[#163A32]"
+                      />
+                    </div>
 
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white">
-                  <Sparkles size={24} className="text-blue-600" />
-                </div>
+                    <h3 className="mt-5 text-lg font-semibold text-[#171C1A]">
+                      {item.title}
+                    </h3>
 
-                <h3 className="mt-5 font-bold text-gray-950">
-                  Advanced Cleaning
-                </h3>
-
-                <p className="mt-2 text-sm leading-6 text-gray-600">
-                  Professional cleaning technology for garment care.
-                </p>
-
-              </div>
-
-              <div className="rounded-3xl border border-blue-100 bg-blue-50 p-7">
-
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white">
-                  <Sparkles size={24} className="text-blue-600" />
-                </div>
-
-                <h3 className="mt-5 font-bold text-gray-950">
-                  Stain Care
-                </h3>
-
-                <p className="mt-2 text-sm leading-6 text-gray-600">
-                  Special attention to stains and garment appearance.
-                </p>
-
-              </div>
-
-              <div className="rounded-3xl border border-blue-100 bg-blue-50 p-7">
-
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white">
-                  <ShieldCheck size={24} className="text-blue-600" />
-                </div>
-
-                <h3 className="mt-5 font-bold text-gray-950">
-                  Fabric Care
-                </h3>
-
-                <p className="mt-2 text-sm leading-6 text-gray-600">
-                  Care designed to protect the appearance of your garments.
-                </p>
-
-              </div>
-
-              <div className="rounded-3xl border border-blue-100 bg-blue-50 p-7">
-
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white">
-                  <Truck size={24} className="text-blue-600" />
-                </div>
-
-                <h3 className="mt-5 font-bold text-gray-950">
-                  Home Pickup
-                </h3>
-
-                <p className="mt-2 text-sm leading-6 text-gray-600">
-                  Convenient pickup service from your location.
-                </p>
-
-              </div>
-
+                    <p className="mt-3 text-sm leading-7 text-[#69736E]">
+                      {item.text}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
-
           </div>
-
         </section>
 
-        {/* ================= HOW IT WORKS ================= */}
+        {/* =====================================================
+            HOW IT WORKS
+        ===================================================== */}
 
         <section
           id="how-it-works"
-          className="bg-gray-950 px-6 py-28 text-white md:px-12"
+          className="bg-[#102A25] px-6 py-28 text-white md:px-12"
         >
-
           <div className="mx-auto max-w-7xl">
-
-            <div className="mb-16 text-center">
-
-              <p className="font-semibold uppercase tracking-[0.2em] text-blue-400">
+            <div className="mx-auto mb-16 max-w-3xl text-center">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#D5BC82]">
                 Simple Process
               </p>
 
-              <h2 className="mt-3 text-4xl font-bold tracking-tight md:text-5xl">
-                How It Works
+              <h2 className="mt-4 text-4xl font-semibold tracking-[-0.03em] md:text-5xl">
+                From Your Doorstep
+                <span className="block text-[#D5BC82]">
+                  Back to Your Wardrobe.
+                </span>
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-gray-400">
-                Professional garment care made simple from pickup
-                to delivery.
+              <p className="mx-auto mt-5 max-w-2xl leading-8 text-white/60">
+                Professional garment care made straightforward from
+                booking through delivery.
               </p>
-
             </div>
 
-            <div className="grid gap-10 md:grid-cols-4">
-
-              {[
-                {
-                  step: "1",
-                  title: "Book",
-                  text: "Request a pickup from your home or contact us directly.",
-                },
-                {
-                  step: "2",
-                  title: "Pickup",
-                  text: "Your garments are collected from your preferred location.",
-                },
-                {
-                  step: "3",
-                  title: "Expert Care",
-                  text: "Your garments receive professional cleaning and care.",
-                },
-                {
-                  step: "4",
-                  title: "Delivery",
-                  text: "Your garments are carefully returned to you.",
-                },
-              ].map((item) => (
-
+            <div className="grid gap-5 md:grid-cols-4">
+              {processSteps.map((item) => (
                 <div
                   key={item.step}
-                  className="rounded-3xl border border-white/10 bg-white/5 p-7 text-center"
+                  className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-7 transition hover:-translate-y-1 hover:bg-white/[0.07]"
                 >
-
-                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-xl font-bold">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#D5BC82]/40 bg-[#B89A5A] text-sm font-semibold text-white">
                     {item.step}
                   </div>
 
-                  <h3 className="mt-5 text-xl font-bold">
+                  <h3 className="mt-6 text-xl font-semibold">
                     {item.title}
                   </h3>
 
-                  <p className="mt-3 leading-7 text-gray-400">
+                  <p className="mt-3 leading-7 text-white/55">
                     {item.text}
                   </p>
-
                 </div>
-
               ))}
-
             </div>
-
           </div>
-
         </section>
 
-        {/* ================= GOOGLE REVIEWS ================= */}
+        {/* =====================================================
+            REVIEWS
+        ===================================================== */}
 
         <section
           id="reviews"
-          className="bg-blue-50/60 px-6 py-28 md:px-12"
+          className="bg-[#F8F5EE] px-6 py-28 md:px-12"
         >
-
           <div className="mx-auto max-w-7xl">
-
             <div className="mx-auto max-w-3xl text-center">
-
-              <p className="font-semibold uppercase tracking-[0.2em] text-blue-600">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#A98645]">
                 Customer Reviews
               </p>
 
-              <h2 className="mt-4 text-4xl font-bold tracking-tight text-gray-950 md:text-5xl">
-                See What Our Customers Say
+              <h2 className="mt-4 text-4xl font-semibold tracking-[-0.03em] text-[#171C1A] md:text-5xl">
+                Trusted by Customers
+                <span className="block text-[#163A32]">
+                  Across Ranchi.
+                </span>
               </h2>
 
-              <p className="mt-5 text-lg leading-8 text-gray-600">
-                Read genuine customer feedback about NewLife Dryclean on Google.
+              <p className="mt-5 text-lg leading-8 text-[#69736E]">
+                See genuine customer feedback and experiences on Google.
               </p>
-
             </div>
 
-            <div className="mx-auto mt-12 max-w-3xl rounded-[2rem] border border-gray-100 bg-white p-8 text-center shadow-sm md:p-12">
-
+            <div className="mx-auto mt-14 max-w-3xl rounded-[2.5rem] border border-[#E7DFD1] bg-white p-8 text-center shadow-[0_24px_60px_rgba(30,40,35,0.07)] md:p-12">
               <div className="flex justify-center gap-1">
-
                 {[1, 2, 3, 4, 5].map((star) => (
                   <Star
                     key={star}
-                    size={25}
-                    className="fill-amber-400 text-amber-400"
+                    size={24}
+                    className="fill-[#B89A5A] text-[#B89A5A]"
                   />
                 ))}
-
               </div>
 
-              <h3 className="mt-6 text-2xl font-bold text-gray-950">
+              <h3 className="mt-6 text-2xl font-semibold text-[#171C1A]">
                 NewLife Dryclean on Google
               </h3>
 
-              <p className="mx-auto mt-4 max-w-xl leading-7 text-gray-600">
-                Customer experiences help others choose the right garment-care
-                service. Visit our Google Business Profile to read genuine reviews.
+              <p className="mx-auto mt-4 max-w-xl leading-7 text-[#69736E]">
+                Customer experiences help others choose the right
+                garment-care service. Read genuine feedback on our
+                Google Business listing.
               </p>
 
-              <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-
+              <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=NewLife+Dryclean+Shrilok+Complex+Ranchi"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-7 py-4 font-semibold text-white transition hover:bg-blue-700"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-[#163A32] px-7 py-4 font-semibold text-white transition hover:bg-[#102A25]"
                 >
                   Read Google Reviews
                   <ArrowRight size={17} />
@@ -773,117 +750,116 @@ export default function Home() {
                   href="https://www.google.com/maps/search/?api=1&query=NewLife+Dryclean+Shrilok+Complex+Ranchi"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-full border border-gray-200 bg-white px-7 py-4 font-semibold text-gray-800 transition hover:border-gray-300 hover:bg-gray-50"
+                  className="inline-flex items-center justify-center rounded-full border border-[#D8D0C1] bg-white px-7 py-4 font-semibold text-[#171C1A] transition hover:bg-[#F8F5EE]"
                 >
-                  Review NewLife Dryclean
+                  Leave a Review
                 </a>
-
               </div>
-
             </div>
-
           </div>
-
         </section>
 
-        {/* ================= LOCATIONS ================= */}
+        {/* =====================================================
+            LOCATIONS
+        ===================================================== */}
 
         <section
           id="locations"
-          className="px-6 py-28 md:px-12"
+          className="bg-white px-6 py-28 md:px-12"
         >
-
           <div className="mx-auto max-w-7xl">
-
-            <div className="mb-14 text-center">
-
-              <p className="font-semibold uppercase tracking-[0.2em] text-blue-600">
+            <div className="mx-auto mb-16 max-w-3xl text-center">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#A98645]">
                 Find Us
               </p>
 
-              <h2 className="mt-3 text-4xl font-bold tracking-tight text-gray-950 md:text-5xl">
-                Our Ranchi Branches
+              <h2 className="mt-4 text-4xl font-semibold tracking-[-0.03em] text-[#171C1A] md:text-5xl">
+                Three Convenient
+                <span className="text-[#163A32]">
+                  {" "}
+                  Ranchi Locations.
+                </span>
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-lg text-gray-600">
-                Visit the NewLife Dryclean branch most convenient for you.
+              <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[#69736E]">
+                Visit the NewLife Dryclean branch most convenient
+                for you or schedule a home pickup.
               </p>
-
             </div>
 
             <div className="grid gap-6 md:grid-cols-3">
-
               {branches.map((branch) => (
                 <BranchCard
                   key={branch.name}
                   branch={branch}
                 />
               ))}
-
             </div>
-
           </div>
-
         </section>
 
-        {/* ================= PICKUP ================= */}
+        {/* =====================================================
+            PICKUP FORM
+        ===================================================== */}
 
         <section
           id="pickup"
-          className="bg-gray-50 px-6 py-28 md:px-12"
+          className="bg-[#F5F1E8] px-6 py-28 md:px-12"
         >
-
           <div className="mx-auto max-w-4xl">
-
-            <div className="mb-14 text-center">
-
-              <p className="font-semibold uppercase tracking-[0.2em] text-blue-600">
+            <div className="mx-auto mb-14 max-w-3xl text-center">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#A98645]">
                 Home Pickup
               </p>
 
-              <h2 className="mt-3 text-4xl font-bold tracking-tight text-gray-950 md:text-5xl">
-                Book a Pickup
+              <h2 className="mt-4 text-4xl font-semibold tracking-[-0.03em] text-[#171C1A] md:text-5xl">
+                Garment Care,
+                <span className="block text-[#163A32]">
+                  From Your Doorstep.
+                </span>
               </h2>
 
-              <p className="mx-auto mt-5 max-w-2xl text-lg text-gray-600">
-                Request a convenient garment pickup from your home in Ranchi.
+              <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[#69736E]">
+                Schedule a convenient garment pickup from your home
+                in Ranchi and continue the booking through WhatsApp.
               </p>
-
             </div>
 
             <PickupForm />
-
           </div>
-
         </section>
 
-        {/* ================= CTA ================= */}
+        {/* =====================================================
+            FINAL CTA
+        ===================================================== */}
 
         <section
           id="contact"
-          className="bg-blue-600 px-6 py-24 text-center text-white md:px-12"
+          className="relative overflow-hidden bg-[#163A32] px-6 py-24 text-center text-white md:px-12"
         >
+          <div className="pointer-events-none absolute -right-40 -top-40 h-96 w-96 rounded-full bg-[#B89A5A]/10 blur-3xl" />
 
-          <div className="mx-auto max-w-4xl">
-
-            <p className="font-semibold uppercase tracking-[0.2em] text-blue-200">
+          <div className="relative mx-auto max-w-4xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#D5BC82]">
               Premium Garment Care
             </p>
 
-            <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
-              Your Clothes. Our Expert Care.
+            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.03em] md:text-5xl">
+              Your Clothes.
+              <span className="block text-[#D5BC82]">
+                Our Expert Care.
+              </span>
             </h2>
 
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-blue-100">
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/65">
               Home pickup is available with a minimum order of ₹1,000.
-              Contact NewLife Dryclean today.
+              Contact NewLife Dryclean to schedule your service.
             </p>
 
-            <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
-
+            <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
               <a
                 href="tel:+919507111333"
-                className="rounded-full bg-white px-8 py-4 font-semibold text-blue-600 transition hover:bg-blue-50"
+                className="rounded-full bg-[#F8F5EE] px-8 py-4 font-semibold text-[#163A32] transition hover:bg-white"
               >
                 Call 9507111333
               </a>
@@ -892,68 +868,100 @@ export default function Home() {
                 href="https://wa.me/919507111333"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full border border-white px-8 py-4 font-semibold transition hover:bg-blue-700"
+                className="rounded-full border border-white/30 px-8 py-4 font-semibold text-white transition hover:border-[#D5BC82] hover:text-[#D5BC82]"
               >
                 WhatsApp Us
               </a>
-
             </div>
-
           </div>
-
         </section>
-
       </main>
 
-      {/* ================= FOOTER ================= */}
+      {/* =====================================================
+          FOOTER
+      ===================================================== */}
 
-      <footer className="border-t bg-white px-6 py-14 md:px-12">
-
+      <footer className="bg-[#102A25] px-6 py-16 text-white md:px-12">
         <div className="mx-auto max-w-7xl">
-
-          <div className="grid gap-10 md:grid-cols-4">
+          <div className="grid gap-12 md:grid-cols-4">
+            {/* BRAND */}
 
             <div>
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#F8F5EE] font-semibold text-[#163A32]">
+                  N
+                </div>
 
-              <h2 className="text-xl font-bold text-gray-950">
-                NewLife Dryclean
-              </h2>
+                <h2 className="text-xl font-semibold">
+                  NewLife Dryclean
+                </h2>
+              </div>
 
-              <p className="mt-3 leading-7 text-gray-500">
+              <p className="mt-5 leading-7 text-white/55">
                 Premium Dry Cleaning & Garment Care
                 <br />
                 Ranchi, Jharkhand
               </p>
-
             </div>
 
-            <div>
+            {/* SERVICES */}
 
-              <h3 className="font-bold text-gray-950">
+            <div>
+              <h3 className="font-semibold text-[#D5BC82]">
                 Services
               </h3>
 
-              <ul className="mt-4 space-y-2 text-gray-500">
-                <li>Dry Cleaning</li>
-                <li>Steam Press</li>
-                <li>Garment Polish</li>
-                <li>Darning</li>
-              </ul>
-
-            </div>
-
-            <div>
-
-              <h3 className="font-bold text-gray-950">
-                Explore
-              </h3>
-
-              <ul className="mt-4 space-y-2 text-gray-500">
+              <ul className="mt-5 space-y-3 text-sm text-white/55">
+                <li>
+                  <a
+                    href="/dry-cleaning-ranchi"
+                    className="transition hover:text-white"
+                  >
+                    Dry Cleaning
+                  </a>
+                </li>
 
                 <li>
                   <a
+                    href="/steam-press-ranchi"
+                    className="transition hover:text-white"
+                  >
+                    Steam Press
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="/garment-polish-ranchi"
+                    className="transition hover:text-white"
+                  >
+                    Garment Polish
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="/darning-ranchi"
+                    className="transition hover:text-white"
+                  >
+                    Darning
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* EXPLORE */}
+
+            <div>
+              <h3 className="font-semibold text-[#D5BC82]">
+                Explore
+              </h3>
+
+              <ul className="mt-5 space-y-3 text-sm text-white/55">
+                <li>
+                  <a
                     href="/about"
-                    className="hover:text-blue-600"
+                    className="transition hover:text-white"
                   >
                     About Us
                   </a>
@@ -962,7 +970,7 @@ export default function Home() {
                 <li>
                   <a
                     href="#reviews"
-                    className="hover:text-blue-600"
+                    className="transition hover:text-white"
                   >
                     Reviews
                   </a>
@@ -971,7 +979,7 @@ export default function Home() {
                 <li>
                   <a
                     href="#locations"
-                    className="hover:text-blue-600"
+                    className="transition hover:text-white"
                   >
                     Locations
                   </a>
@@ -980,40 +988,51 @@ export default function Home() {
                 <li>
                   <a
                     href="#pickup"
-                    className="hover:text-blue-600"
+                    className="transition hover:text-white"
                   >
                     Book Pickup
                   </a>
                 </li>
-
               </ul>
-
             </div>
 
-            <div>
+            {/* CONTACT */}
 
-              <h3 className="font-bold text-gray-950">
+            <div>
+              <h3 className="font-semibold text-[#D5BC82]">
                 Contact
               </h3>
 
-              <p className="mt-4 text-gray-500">
-                📞 9507111333
+              <p className="mt-5 text-sm text-white/55">
+                9507111333
               </p>
 
-              <p className="mt-2 text-gray-500">
-                📍 Ranchi, Jharkhand
+              <p className="mt-3 text-sm text-white/55">
+                Ranchi, Jharkhand
               </p>
 
+              <a
+                href="https://wa.me/919507111333"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#D5BC82] hover:text-white"
+              >
+                WhatsApp
+                <ArrowRight size={15} />
+              </a>
             </div>
-
           </div>
 
-          <div className="mt-12 border-t pt-6 text-center text-sm text-gray-400">
-            © 2026 NewLife Dryclean. All rights reserved.
-          </div>
+          <div className="mt-14 flex flex-col gap-3 border-t border-white/10 pt-7 text-sm text-white/35 md:flex-row md:items-center md:justify-between">
+            <p>
+              © 2026 NewLife Dryclean. All rights reserved.
+            </p>
 
+            <p>
+              Premium Garment Care • Ranchi
+            </p>
+          </div>
         </div>
-
       </footer>
 
       <FloatingActions />

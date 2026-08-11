@@ -1,5 +1,20 @@
 @import "tailwindcss";
+:root {
+  --brand: #163a32;
+  --brand-dark: #102a25;
+  --brand-soft: #e8eee9;
 
+  --gold: #b89a5a;
+  --gold-soft: #f3ead7;
+
+  --ivory: #f8f5ee;
+  --stone: #eeeae1;
+
+  --ink: #171c1a;
+  --muted: #66706b;
+
+  --white: #ffffff;
+}
 :root {
   --background: #ffffff;
   --foreground: #171717;
