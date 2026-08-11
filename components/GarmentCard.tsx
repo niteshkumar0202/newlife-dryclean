@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 type Garment = {
   name: string;
   icon: string;
@@ -8,25 +10,27 @@ export default function GarmentCard({
 }: {
   garment: Garment;
 }) {
+  const href =
+    garment.name === "Bridal Wear"
+      ? "/bridal-wear-dry-cleaning-ranchi"
+      : "/#pickup";
+
   return (
-    <div className="group rounded-3xl border border-gray-100 bg-white p-7 text-center shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl">
-
-      {/* Icon */}
-
-      <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-blue-50 text-4xl transition duration-300 group-hover:scale-110 group-hover:bg-blue-100">
+    <Link
+      href={href}
+      className="group rounded-3xl border border-gray-100 bg-white p-7 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+    >
+      <div className="text-4xl transition group-hover:scale-110">
         {garment.icon}
       </div>
 
-      {/* Garment name */}
-
-      <h3 className="mt-5 text-lg font-bold text-gray-900">
+      <h3 className="mt-5 font-bold text-gray-950">
         {garment.name}
       </h3>
 
-      {/* Small accent */}
-
-      <div className="mx-auto mt-4 h-1 w-8 rounded-full bg-blue-600 transition-all duration-300 group-hover:w-12" />
-
-    </div>
+      <p className="mt-2 text-sm font-medium text-blue-600">
+        View Care Options
+      </p>
+    </Link>
   );
 }
