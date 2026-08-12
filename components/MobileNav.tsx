@@ -2,7 +2,16 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
+
+const links = [
+  ["Services", "/services"],
+  ["About", "/about"],
+  ["Before & After", "/#results"],
+  ["Reviews", "/#reviews"],
+  ["Locations", "/locations"],
+  ["FAQ", "/#faq"],
+] as const;
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
@@ -10,74 +19,36 @@ export default function MobileNav() {
   return (
     <div className="lg:hidden">
       <button
-        onClick={() => setOpen(!open)}
-        className="flex h-11 w-11 items-center justify-center rounded-xl border border-gray-200 bg-white"
-        aria-label="Toggle navigation"
+        type="button"
+        onClick={() => setOpen((value) => !value)}
+        className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#dbe5f4] bg-white text-[#6B7C4A]"
+        aria-label={open ? "Close navigation" : "Open navigation"}
+        aria-expanded={open}
       >
         {open ? <X size={22} /> : <Menu size={22} />}
       </button>
 
       {open && (
-        <div className="absolute left-0 top-full w-full border-t border-gray-100 bg-white shadow-xl">
+        <div className="absolute left-0 top-full w-full border-t border-[#dbe5f4] bg-[#f8fbff] shadow-xl">
           <div className="flex flex-col px-6 py-6">
-
-            <Link
-              href="/#services"
-              onClick={() => setOpen(false)}
-              className="border-b border-gray-100 py-4 font-medium text-gray-800"
-            >
-              Services
-            </Link>
-
-            <Link
-              href="/#garments"
-              onClick={() => setOpen(false)}
-              className="border-b border-gray-100 py-4 font-medium text-gray-800"
-            >
-              Garments
-            </Link>
-
-            <Link
-              href="/about"
-              onClick={() => setOpen(false)}
-              className="border-b border-gray-100 py-4 font-medium text-gray-800"
-            >
-              About
-            </Link>
-
-            <Link
-              href="/#how-it-works"
-              onClick={() => setOpen(false)}
-              className="border-b border-gray-100 py-4 font-medium text-gray-800"
-            >
-              How It Works
-            </Link>
-
-            <Link
-              href="/#reviews"
-              onClick={() => setOpen(false)}
-              className="border-b border-gray-100 py-4 font-medium text-gray-800"
-            >
-              Reviews
-            </Link>
-
-            <Link
-              href="/#locations"
-              onClick={() => setOpen(false)}
-              className="py-4 font-medium text-gray-800"
-            >
-              Locations
-            </Link>
+            {links.map(([label, href]) => (
+              <Link
+                key={href}
+                href={href}
+                onClick={() => setOpen(false)}
+                className="border-b border-[#dbe5f4] py-4 font-medium text-[#2A2C24]"
+              >
+                {label}
+              </Link>
+            ))}
 
             <Link
               href="/#pickup"
               onClick={() => setOpen(false)}
-              className="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-4 font-semibold text-white"
+              className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-[#6B7C4A] px-6 py-4 font-semibold text-white"
             >
-              Book Pickup
-              <ArrowRight size={17} />
+              Book a Pickup <ArrowRight size={17} />
             </Link>
-
           </div>
         </div>
       )}

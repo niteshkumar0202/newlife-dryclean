@@ -1,60 +1,33 @@
+import Link from "next/link";
+import { ArrowRight, MapPin, Navigation } from "lucide-react";
+
 type Branch = {
   name: string;
   address: string[];
   mapsUrl: string;
+  slug?: string;
 };
 
-export default function BranchCard({
-  branch,
-}: {
-  branch: Branch;
-}) {
+export default function BranchCard({ branch }: { branch: Branch }) {
   return (
-    <div className="group flex h-full flex-col rounded-3xl border border-gray-100 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl">
-
-      {/* Location icon */}
-
-      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-3xl transition duration-300 group-hover:scale-110 group-hover:bg-blue-100">
-        📍
+    <div className="group flex h-full flex-col rounded-[2rem] border border-[#dbe5f4] bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#ECFDF5] text-[#176B4D] transition group-hover:bg-[#E8DEC8]">
+        <MapPin size={26} />
       </div>
-
-      {/* Branch name */}
-
-      <h3 className="mt-6 text-2xl font-bold text-gray-900">
-        {branch.name}
-      </h3>
-
-      {/* Address */}
-
-      <div className="mt-4 min-h-[100px] text-gray-600">
-        {branch.address.map((line) => (
-          <span
-            key={line}
-            className="block leading-7"
-          >
-            {line}
-          </span>
-        ))}
+      <h3 className="mt-6 text-2xl font-semibold text-[#172033]">{branch.name}</h3>
+      <div className="mt-4 min-h-[100px] text-[#5D6B62]">
+        {branch.address.map((line) => <span key={line} className="block leading-7">{line}</span>)}
       </div>
-
-      {/* Directions */}
-
-      <div className="mt-auto pt-7">
-
-        <a
-          href={branch.mapsUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
-        >
-          Get Directions
-          <span className="ml-2 transition-transform group-hover:translate-x-1">
-            →
-          </span>
+      <div className="mt-auto flex flex-col gap-3 pt-7 sm:flex-row md:flex-col xl:flex-row">
+        {branch.slug && (
+          <Link href={`/locations/${branch.slug}`} className="inline-flex items-center justify-center gap-2 rounded-full bg-[#176B4D] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#102A25]">
+            Branch Details <ArrowRight size={15} />
+          </Link>
+        )}
+        <a href={branch.mapsUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full border border-[#dbe5f4] px-5 py-3 text-sm font-semibold text-[#176B4D] transition hover:bg-[#f8fbff]">
+          <Navigation size={15} /> Get Directions
         </a>
-
       </div>
-
     </div>
   );
 }

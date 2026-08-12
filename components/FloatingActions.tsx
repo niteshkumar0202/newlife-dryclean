@@ -10,7 +10,7 @@ export default function FloatingActions() {
         href="tel:+919507111333"
         className="flex flex-col items-center justify-center gap-1 rounded-xl px-2 py-3 text-xs font-semibold text-gray-700"
       >
-        <Phone size={19} className="text-blue-600" />
+        <Phone size={19} className="text-emerald-600" />
         Call
       </a>
 
@@ -26,7 +26,7 @@ export default function FloatingActions() {
 
       <a
         href="#pickup"
-        className="flex flex-col items-center justify-center gap-1 rounded-xl bg-blue-600 px-2 py-3 text-xs font-semibold text-white"
+        className="flex flex-col items-center justify-center gap-1 rounded-xl bg-emerald-600 px-2 py-3 text-xs font-semibold text-white"
       >
         <ShoppingBag size={19} />
         Book Pickup

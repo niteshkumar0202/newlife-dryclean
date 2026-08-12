@@ -28,7 +28,7 @@ export default function GarmentCard({
         {garment.name}
       </h3>
 
-      <p className="mt-2 text-sm font-medium text-blue-600">
+      <p className="mt-2 text-sm font-medium text-emerald-600">
         View Care Options
       </p>
     </Link>

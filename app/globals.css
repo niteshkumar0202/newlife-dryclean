@@ -1,41 +1,26 @@
 @import "tailwindcss";
-:root {
-  --brand: #163a32;
-  --brand-dark: #102a25;
-  --brand-soft: #e8eee9;
 
-  --gold: #b89a5a;
-  --gold-soft: #f3ead7;
-
-  --ivory: #f8f5ee;
-  --stone: #eeeae1;
-
-  --ink: #171c1a;
-  --muted: #66706b;
-
-  --white: #ffffff;
-}
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #2A2C24;
+  --brand: #6B7C4A;
+  --soft: #F7F8F2;
+  --card: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-dm-sans), Arial, sans-serif;
+  --font-serif: var(--font-fraunces), Georgia, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--background); color: var(--foreground); font-family: var(--font-dm-sans), Arial, sans-serif; }
+.font-serif { font-family: var(--font-fraunces), Georgia, serif; }
+::selection { background: #6B7C4A; color: #fff; }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
