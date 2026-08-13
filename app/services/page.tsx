@@ -21,7 +21,6 @@ import PricingEstimator from "@/components/PricingEstimator";
 import BeforeAfter from "@/components/BeforeAfter";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
 import { GOOGLE_BUSINESS_URL, SITE_URL } from "@/lib/site";
-import { getCmsBenefits, getCmsServices, getCmsSettings } from "@/lib/sanity/content";
 
 export const metadata: Metadata = {
   title: "Laundry & Dry Cleaning Services in Ranchi | NewLife Dryclean",
@@ -37,7 +36,7 @@ export const metadata: Metadata = {
   },
 };
 
-const fallbackServices = [
+const services = [
   { icon: Shirt, image: "/services/wash-fold.jpg", title: "Wash & Fold", text: "Perfect for everyday clothes, towels and bed linens. We separate colors from lights, wash according to fabric-care labels, dry appropriately and fold every item neatly." },
   { icon: Sparkles, image: "/services/dry-cleaning.jpg", title: "Dry Cleaning", text: "Expert dry cleaning for delicate garments, tailored suits, dresses, outerwear, bridal wear and specialty fabrics, with stain treatment designed to preserve fabric integrity and color." },
   { icon: Wind, image: "/services/steam-pressing.jpg", title: "Ironing & Steam Pressing", text: "Professional pressing for shirts, trousers, uniforms and formal wear, delivering crisp lines and a smooth, wrinkle-free finish." },
@@ -46,7 +45,7 @@ const fallbackServices = [
   { icon: Shirt, image: "/services/darning-repair.jpg", title: "Darning & Repair", text: "Thoughtful repair for tears, snags and worn areas in garments you want to keep wearing." },
 ];
 
-const fallbackBenefits = [
+const benefits = [
   { icon: Truck, title: "Free Pickup & Delivery", text: "We pick up your laundry at a time that works for you and return it fresh, clean and neatly finished." },
   { icon: Droplets, title: "Fabric-Specific Care", text: "From delicate silks to heavy denim, garments receive customized care using premium eco-friendly detergents and appropriate treatment methods." },
   { icon: Clock3, title: "Fast Turnaround", text: "Standard 24-to-48-hour delivery options are available, with same-day rush service for eligible orders." },
@@ -60,49 +59,7 @@ const steps = [
   { no: "04", title: "Fresh Delivery", text: "Your clean, ready-to-wear garments are returned straight to your doorstep." },
 ];
 
-export default async function ServicesPage() {
-  const [cmsSettings, cmsServices, cmsBenefits] = await Promise.all([
-    getCmsSettings(), getCmsServices(), getCmsBenefits()
-  ]);
-
-  const iconForService = (title: string) => {
-    const key = title.toLowerCase();
-    if (key.includes("steam") || key.includes("iron")) return Wind;
-    if (key.includes("commercial")) return Hotel;
-    if (key.includes("polish")) return PackageCheck;
-    if (key.includes("dry clean")) return Sparkles;
-    return Shirt;
-  };
-
-  const services = cmsServices?.length
-    ? cmsServices.map((item, index) => ({
-        icon: iconForService(item.title),
-        image: item.imageUrl || fallbackServices[index % fallbackServices.length].image,
-        title: item.title,
-        text: item.description || "Professional garment care from NewLife Dryclean.",
-      }))
-    : fallbackServices;
-
-  const benefitIcon = (title: string) => {
-    const key = title.toLowerCase();
-    if (key.includes("pickup") || key.includes("delivery")) return Truck;
-    if (key.includes("fabric") || key.includes("eco")) return Droplets;
-    if (key.includes("turnaround") || key.includes("fast")) return Clock3;
-    return CheckCircle2;
-  };
-
-  const benefits = cmsBenefits?.length
-    ? cmsBenefits.map((item) => ({
-        icon: benefitIcon(item.title),
-        title: item.title,
-        text: item.description || "Professional service from NewLife Dryclean.",
-      }))
-    : fallbackBenefits;
-
-  const heroTitle = cmsSettings?.servicesHeroTitle || "Fresh, Clean Laundry—Delivered to Your Door";
-  const heroText = cmsSettings?.servicesHeroText || "Take laundry off your to-do list. We handle your clothes with professional care using eco-friendly detergents, precise fabric treatments, and reliable pickup and delivery across Ranchi.";
-  const firstOrderDiscount = cmsSettings?.firstOrderDiscount ?? 15;
-
+export default function ServicesPage() {
   return (
     <>
       <SiteHeader />
@@ -113,8 +70,14 @@ export default async function ServicesPage() {
               <p className="text-xs font-bold uppercase tracking-[.18em] text-[#6B7C4A]">
                 NewLife Dryclean Services
               </p>
-              <h1 className="mt-5 font-serif text-5xl font-semibold leading-[1.02] text-[#29461F] sm:text-6xl lg:text-7xl">{heroTitle}</h1>
-              <p className="mt-6 max-w-xl text-lg leading-8 text-[#42483B]">{heroText}</p>
+              <h1 className="mt-5 font-serif text-5xl font-semibold leading-[1.02] text-[#29461F] sm:text-6xl lg:text-7xl">
+                Fresh, Clean Laundry—
+                <br />
+                Delivered to Your Door
+              </h1>
+              <p className="mt-6 max-w-xl text-lg leading-8 text-[#42483B]">
+                Take laundry off your to-do list. We handle your clothes with professional care using eco-friendly detergents, precise fabric treatments, and reliable pickup and delivery across Ranchi.
+              </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
@@ -254,7 +217,7 @@ export default async function ServicesPage() {
 
         <section className="bg-[#6B7C4A] px-6 py-16 text-center text-white sm:px-8">
           <p className="text-xs font-bold uppercase tracking-[.18em] text-[#E7EBDC]">Ready for Effortless Laundry?</p>
-          <h2 className="mt-3 font-serif text-4xl font-semibold">Get {firstOrderDiscount}% off your first online order.</h2>
+          <h2 className="mt-3 font-serif text-4xl font-semibold">Get 15% off your first online order.</h2>
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[#F7F8F2]">Schedule your first pickup online today, or call us for custom and commercial laundry enquiries.</p>
           <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
             <Link href="/#book-pickup" className="rounded-md bg-white px-7 py-3.5 text-sm font-bold text-[#3F4A2B]">Book Your Pickup Now</Link>

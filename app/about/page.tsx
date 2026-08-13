@@ -6,7 +6,6 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import FloatingActions from "@/components/FloatingActions";
 import { branches } from "@/lib/site";
-import { getCmsAboutProcess } from "@/lib/sanity/content";
 
 export const metadata: Metadata = {
   title: "About NewLife Dryclean Ranchi",
@@ -22,24 +21,16 @@ const strengths = [
   { title: "Local Presence", text: "Three Ranchi branches provide convenient in-person access.", icon: MapPin },
 ];
 
-const fallbackProcess = [
-  { title: "Garment inspection", description: undefined, image: "/about-process/garment-inspection.jpg" },
-  { title: "Fabric and care assessment", description: undefined, image: "/about-process/fabric-care-assessment.jpg" },
-  { title: "Appropriate cleaning process", description: undefined, image: "/about-process/cleaning-process.jpg" },
-  { title: "Finishing and steam pressing", description: undefined, image: "/about-process/steam-pressing.jpg" },
-  { title: "Quality check", description: undefined, image: "/about-process/quality-check.jpg" },
-  { title: "Pickup or delivery", description: undefined, image: "/about-process/pickup-delivery.jpg" },
+const process = [
+  { title: "Garment inspection", image: "/about-process/garment-inspection.jpg" },
+  { title: "Fabric and care assessment", image: "/about-process/fabric-care-assessment.jpg" },
+  { title: "Appropriate cleaning process", image: "/about-process/cleaning-process.jpg" },
+  { title: "Finishing and steam pressing", image: "/about-process/steam-pressing.jpg" },
+  { title: "Quality check", image: "/about-process/quality-check.jpg" },
+  { title: "Pickup or delivery", image: "/about-process/pickup-delivery.jpg" },
 ];
 
-export default async function AboutPage() {
-  const cmsProcess = await getCmsAboutProcess();
-  const process = cmsProcess?.length
-    ? cmsProcess.map((item, index) => ({
-        title: item.title,
-        image: item.imageUrl || fallbackProcess[index % fallbackProcess.length].image,
-        description: item.description,
-      }))
-    : fallbackProcess;
+export default function AboutPage() {
   return (
     <>
       <SiteHeader />
@@ -112,7 +103,7 @@ export default async function AboutPage() {
                         <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#d6a329] font-semibold text-[#176B4D]">
                           {index + 1}
                         </span>
-                        <div><span className="font-semibold">{step.title}</span>{step.description ? <p className="mt-1 text-sm text-white/65">{step.description}</p> : null}</div>
+                        <span className="font-semibold">{step.title}</span>
                       </div>
                       <CheckCircle2 size={20} className="shrink-0 text-[#d6a329]" />
                     </div>
