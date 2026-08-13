@@ -48,6 +48,29 @@ export default function SiteFooter() {
           <p className="flex items-center gap-1"><MapPin size={12}/> Ranchi, Jharkhand</p>
         </div>
       </div>
-    </footer>
+    
+        <div className="mt-6 flex items-center gap-3">
+          <a href="https://www.facebook.com/p/Newlife-Dryclean-61592584269176/" target="_blank" rel="noopener noreferrer"
+             aria-label="NewLife Dryclean on Facebook"
+             className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#176B4D]/20 text-[#176B4D] transition hover:bg-[#176B4D] hover:text-white">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+              <path d="M13.5 22v-9h3l.45-3.5H13.5V7.26c0-1.01.28-1.7 1.74-1.7H17.1V2.43c-.32-.04-1.42-.13-2.7-.13-2.67 0-4.5 1.63-4.5 4.63V9.5H7v3.5h2.9v9h3.6Z" />
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/newlifedrycleanranchi/" target="_blank" rel="noopener noreferrer"
+             aria-label="NewLife Dryclean on Instagram"
+             className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#176B4D]/20 text-[#176B4D] transition hover:bg-[#176B4D] hover:text-white">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/newlifedrycleanranchi/" target="_blank" rel="noopener noreferrer"
+             className="text-sm font-semibold text-[#176B4D] hover:underline">
+            @newlifedrycleanranchi
+          </a>
+        </div>
+</footer>
   );
 }
