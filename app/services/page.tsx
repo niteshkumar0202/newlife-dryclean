@@ -1,90 +1,265 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
+import Image from "next/image";
+import {
+  ArrowRight,
+  CheckCircle2,
+  Clock3,
+  Droplets,
+  Hotel,
+  PackageCheck,
+  Shirt,
+  Sparkles,
+  Truck,
+  Wind,
+} from "lucide-react";
+
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import FloatingActions from "@/components/FloatingActions";
-import { services } from "@/lib/site";
+import PricingEstimator from "@/components/PricingEstimator";
+import BeforeAfter from "@/components/BeforeAfter";
+import ReviewsCarousel from "@/components/ReviewsCarousel";
+import { GOOGLE_BUSINESS_URL, SITE_URL } from "@/lib/site";
+import { getCmsBenefits, getCmsServices, getCmsSettings } from "@/lib/sanity/content";
 
 export const metadata: Metadata = {
-  title: "Garment Care Services in Ranchi",
+  title: "Laundry & Dry Cleaning Services in Ranchi | NewLife Dryclean",
   description:
-    "Explore NewLife Dryclean services in Ranchi including dry cleaning, steam press, garment polish, darning and bridal wear care.",
-  alternates: { canonical: "/services" },
+    "Explore NewLife Dryclean services in Ranchi including wash & fold, dry cleaning, steam pressing, garment polish, darning, bridal wear care, free pickup & delivery, commercial laundry and fast turnaround options.",
+  alternates: { canonical: `${SITE_URL}/services` },
+  openGraph: {
+    title: "Laundry & Dry Cleaning Services in Ranchi | NewLife Dryclean",
+    description:
+      "Professional laundry, dry cleaning, pressing and commercial garment-care services with free pickup and delivery in Ranchi.",
+    url: `${SITE_URL}/services`,
+    type: "website",
+  },
 };
 
-const promises = [
-  "Garment-specific care assessment",
-  "Professional finishing",
-  "Home pickup request across Ranchi",
-  "Three convenient Ranchi locations",
+const fallbackServices = [
+  { icon: Shirt, image: "/services/wash-fold.jpg", title: "Wash & Fold", text: "Perfect for everyday clothes, towels and bed linens. We separate colors from lights, wash according to fabric-care labels, dry appropriately and fold every item neatly." },
+  { icon: Sparkles, image: "/services/dry-cleaning.jpg", title: "Dry Cleaning", text: "Expert dry cleaning for delicate garments, tailored suits, dresses, outerwear, bridal wear and specialty fabrics, with stain treatment designed to preserve fabric integrity and color." },
+  { icon: Wind, image: "/services/steam-pressing.jpg", title: "Ironing & Steam Pressing", text: "Professional pressing for shirts, trousers, uniforms and formal wear, delivering crisp lines and a smooth, wrinkle-free finish." },
+  { icon: Hotel, image: "/services/commercial-laundry.jpg", title: "Commercial Laundry Services", text: "Tailored laundry solutions for hotels, gyms, spas, Airbnb hosts and medical clinics, including high-volume linen, towel and uniform care with strict hygiene standards and quick turnaround." },
+  { icon: PackageCheck, image: "/services/garment-polish.jpg", title: "Garment Polish", text: "Finishing care for selected garments to refresh appearance, improve presentation and keep special pieces looking their best." },
+  { icon: Shirt, image: "/services/darning-repair.jpg", title: "Darning & Repair", text: "Thoughtful repair for tears, snags and worn areas in garments you want to keep wearing." },
 ];
 
-export default function ServicesPage() {
+const fallbackBenefits = [
+  { icon: Truck, title: "Free Pickup & Delivery", text: "We pick up your laundry at a time that works for you and return it fresh, clean and neatly finished." },
+  { icon: Droplets, title: "Fabric-Specific Care", text: "From delicate silks to heavy denim, garments receive customized care using premium eco-friendly detergents and appropriate treatment methods." },
+  { icon: Clock3, title: "Fast Turnaround", text: "Standard 24-to-48-hour delivery options are available, with same-day rush service for eligible orders." },
+  { icon: CheckCircle2, title: "Transparent Pricing", text: "Simple per-item or service-based pricing with no hidden fees, supported by an online pricing estimator for planning." },
+];
+
+const steps = [
+  { no: "01", title: "Schedule a Pickup", text: "Book your preferred date and time online or through WhatsApp in under a minute." },
+  { no: "02", title: "We Collect Your Clothes", text: "Leave your laundry bag ready for collection or hand it directly to the NewLife pickup team." },
+  { no: "03", title: "We Wash & Inspect", text: "Garment specialists sort, treat, wash, dry, press, fold or hang items according to your service preferences." },
+  { no: "04", title: "Fresh Delivery", text: "Your clean, ready-to-wear garments are returned straight to your doorstep." },
+];
+
+export default async function ServicesPage() {
+  const [cmsSettings, cmsServices, cmsBenefits] = await Promise.all([
+    getCmsSettings(), getCmsServices(), getCmsBenefits()
+  ]);
+
+  const iconForService = (title: string) => {
+    const key = title.toLowerCase();
+    if (key.includes("steam") || key.includes("iron")) return Wind;
+    if (key.includes("commercial")) return Hotel;
+    if (key.includes("polish")) return PackageCheck;
+    if (key.includes("dry clean")) return Sparkles;
+    return Shirt;
+  };
+
+  const services = cmsServices?.length
+    ? cmsServices.map((item, index) => ({
+        icon: iconForService(item.title),
+        image: item.imageUrl || fallbackServices[index % fallbackServices.length].image,
+        title: item.title,
+        text: item.description || "Professional garment care from NewLife Dryclean.",
+      }))
+    : fallbackServices;
+
+  const benefitIcon = (title: string) => {
+    const key = title.toLowerCase();
+    if (key.includes("pickup") || key.includes("delivery")) return Truck;
+    if (key.includes("fabric") || key.includes("eco")) return Droplets;
+    if (key.includes("turnaround") || key.includes("fast")) return Clock3;
+    return CheckCircle2;
+  };
+
+  const benefits = cmsBenefits?.length
+    ? cmsBenefits.map((item) => ({
+        icon: benefitIcon(item.title),
+        title: item.title,
+        text: item.description || "Professional service from NewLife Dryclean.",
+      }))
+    : fallbackBenefits;
+
+  const heroTitle = cmsSettings?.servicesHeroTitle || "Fresh, Clean Laundry—Delivered to Your Door";
+  const heroText = cmsSettings?.servicesHeroText || "Take laundry off your to-do list. We handle your clothes with professional care using eco-friendly detergents, precise fabric treatments, and reliable pickup and delivery across Ranchi.";
+  const firstOrderDiscount = cmsSettings?.firstOrderDiscount ?? 15;
+
   return (
     <>
       <SiteHeader />
-      <main>
-        <section className="bg-gradient-to-b from-[#ECFDF5] via-[#f8fbff] to-white px-6 py-24 md:px-12 md:py-32">
-          <div className="mx-auto max-w-5xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#c79a2b]">Our Services</p>
-            <h1 className="mt-5 text-5xl font-semibold tracking-[-0.045em] text-[#172033] md:text-7xl">
-              Professional Garment Care
-              <span className="block text-[#176B4D]">for Ranchi.</span>
-            </h1>
-            <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-[#5D6B62] md:text-xl">
-              Choose the service your garment needs, then visit a branch or request a convenient home pickup.
-            </p>
-          </div>
-        </section>
-
-        <section className="px-6 py-24 md:px-12">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {services.map((service) => (
-                <Link
-                  key={service.href}
-                  href={service.href}
-                  className="group rounded-[2rem] border border-[#dbe5f4] bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
-                >
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#ECFDF5] text-3xl">{service.icon}</div>
-                  <h2 className="mt-6 text-2xl font-semibold text-[#172033]">{service.name}</h2>
-                  <p className="mt-4 leading-7 text-[#5D6B62]">{service.short}</p>
-                  <span className="mt-7 inline-flex items-center gap-2 font-semibold text-[#176B4D]">
-                    Explore service <ArrowRight size={17} className="transition group-hover:translate-x-1" />
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-[#176B4D] px-6 py-24 text-white md:px-12">
-          <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-2 lg:items-center">
+      <main className="bg-white text-[#2A2C24]">
+        <section className="bg-[#F7F8F2] px-6 py-16 sm:px-8 lg:py-20">
+          <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.02fr_.98fr]">
             <div>
-              <Sparkles className="text-[#c79a2b]" size={30} />
-              <h2 className="mt-5 text-4xl font-semibold tracking-[-0.035em] md:text-5xl">Care That Starts With the Garment.</h2>
-              <p className="mt-6 max-w-xl leading-8 text-white/65">
-                Cleaning requirements vary by fabric, construction, finish, stain and previous treatment. Inspection helps determine the appropriate service before work begins.
+              <p className="text-xs font-bold uppercase tracking-[.18em] text-[#6B7C4A]">
+                NewLife Dryclean Services
               </p>
+              <h1 className="mt-5 font-serif text-5xl font-semibold leading-[1.02] text-[#29461F] sm:text-6xl lg:text-7xl">{heroTitle}</h1>
+              <p className="mt-6 max-w-xl text-lg leading-8 text-[#42483B]">{heroText}</p>
+
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href="/#book-pickup"
+                  className="inline-flex items-center justify-center gap-2 rounded-md bg-[#45651F] px-7 py-4 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#29461F]"
+                >
+                  <Truck size={17} />
+                  Schedule a Free Pickup
+                </Link>
+                <Link
+                  href="#pricing"
+                  className="inline-flex items-center justify-center gap-2 rounded-md border border-[#45651F] bg-white px-7 py-4 text-sm font-bold text-[#29461F] transition hover:bg-[#45651F] hover:text-white"
+                >
+                  View Pricing
+                  <ArrowRight size={16} />
+                </Link>
+              </div>
+
+              <div className="mt-8 grid grid-cols-2 gap-3 text-xs font-semibold text-[#3F4A2B] sm:grid-cols-4">
+                <span>✓ Free Pickup & Delivery</span>
+                <span>✓ Fabric-Specific Care</span>
+                <span>✓ Fast Turnaround</span>
+                <span>✓ Transparent Pricing</span>
+              </div>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {promises.map((item) => (
-                <div key={item} className="flex gap-3 rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <CheckCircle2 className="mt-0.5 shrink-0 text-[#c79a2b]" size={20} />
-                  <span className="font-medium">{item}</span>
+
+            <div className="relative h-[340px] overflow-hidden rounded-3xl shadow-[0_18px_45px_rgba(42,44,36,.14)] sm:h-[470px] lg:h-[560px]">
+              <Image
+                src="/newlife-hero-photo-clean.jpg"
+                alt="Freshly cleaned and folded clothes ready for NewLife Dryclean pickup and delivery service"
+                fill
+                priority
+                sizes="(max-width:1024px) 100vw, 48vw"
+                className="object-cover object-center"
+              />
+              <div className="absolute inset-x-5 bottom-5 rounded-2xl bg-white/92 p-4 backdrop-blur-md">
+                <p className="text-sm font-bold text-[#3F4A2B]">Freshly cleaned. Ready to wear.</p>
+                <p className="mt-1 text-xs leading-5 text-[#5B5E51]">
+                  Professional garment care with convenient pickup and delivery across Ranchi.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="px-6 py-20 sm:px-8">
+          <div className="mx-auto max-w-7xl">
+            <div className="text-center">
+              <p className="text-xs font-bold uppercase tracking-[.18em] text-[#6B7C4A]">Why Choose Us</p>
+              <h2 className="mt-3 font-serif text-4xl font-semibold text-[#3F4A2B]">Convenient service. Professional care.</h2>
+            </div>
+            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {benefits.map(({ icon: Icon, title, text }) => (
+                <div key={title} className="rounded-3xl border border-[#3F4A2B]/10 bg-white p-7 shadow-sm">
+                  <div className="grid h-14 w-14 place-items-center rounded-full bg-[#E7EBDC] text-[#6B7C4A]"><Icon size={22} /></div>
+                  <h3 className="mt-5 font-serif text-xl font-semibold text-[#3F4A2B]">{title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-[#5B5E51]">{text}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="bg-[#F5F1E8] px-6 py-20 text-center md:px-12">
-          <h2 className="text-4xl font-semibold tracking-[-0.03em] text-[#172033]">Not sure which service you need?</h2>
-          <p className="mx-auto mt-5 max-w-2xl leading-8 text-[#5D6B62]">Send us the garment details on WhatsApp or book a pickup for assessment.</p>
-          <Link href="/#pickup" className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#176B4D] px-8 py-4 font-semibold text-white">
-            Book a Pickup <ArrowRight size={18} />
-          </Link>
+        <section className="px-6 pb-20 sm:px-8">
+          <div className="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-[#3F4A2B]/10 bg-white shadow-sm">
+            <div className="relative h-[280px] sm:h-[380px]">
+              <Image src="/services/pickup-delivery.jpg" alt="NewLife Dryclean pickup and delivery service" fill sizes="100vw" className="object-contain bg-[#F7F8F2]" />
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-[#F7F8F2] px-6 py-20 sm:px-8">
+          <div className="mx-auto max-w-7xl">
+            <div className="text-center">
+              <p className="text-xs font-bold uppercase tracking-[.18em] text-[#6B7C4A]">Our Services</p>
+              <h2 className="mt-3 font-serif text-4xl font-semibold text-[#3F4A2B]">Everything your clothes need.</h2>
+            </div>
+            <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {services.map(({ icon: Icon, image, title, text }) => (
+                <div key={title} className="overflow-hidden rounded-3xl border border-[#3F4A2B]/10 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                  <div className="relative h-52 w-full">
+                    <Image src={image} alt={`${title} service at NewLife Dryclean`} fill sizes="(max-width: 1024px) 50vw, 33vw" className="object-cover" />
+                  </div>
+                  <div className="p-7">
+                    <div className="grid h-12 w-12 place-items-center rounded-full bg-[#E7EBDC] text-[#6B7C4A]"><Icon size={20} /></div>
+                    <h3 className="mt-5 font-serif text-xl font-semibold text-[#3F4A2B]">{title}</h3>
+                    <p className="mt-3 text-sm leading-7 text-[#5B5E51]">{text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="px-6 py-20 sm:px-8">
+          <div className="mx-auto max-w-7xl text-center">
+            <p className="text-xs font-bold uppercase tracking-[.18em] text-[#6B7C4A]">How It Works</p>
+            <h2 className="mt-3 font-serif text-4xl font-semibold text-[#3F4A2B]">Four simple steps to fresh laundry.</h2>
+            <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
+              {steps.map((step) => (
+                <div key={step.no}>
+                  <div className="mx-auto grid h-10 w-10 place-items-center rounded-full bg-[#6B7C4A] font-serif text-xs text-white">{step.no}</div>
+                  <h3 className="mt-4 font-semibold text-[#3F4A2B]">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#5B5E51]">{step.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-[#F7F8F2] px-6 py-20 sm:px-8">
+          <div className="mx-auto max-w-6xl text-center">
+            <p className="text-xs font-bold uppercase tracking-[.18em] text-[#6B7C4A]">Before & After</p>
+            <h2 className="mt-3 font-serif text-4xl font-semibold text-[#3F4A2B]">See the NewLife difference.</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[#5B5E51]">Compare a visibly soiled shirt with a clean, professionally finished result.</p>
+            <div className="mt-10"><BeforeAfter /></div>
+          </div>
+        </section>
+
+        <section id="pricing" className="px-6 py-20 sm:px-8">
+          <div className="mx-auto max-w-6xl text-center">
+            <p className="text-xs font-bold uppercase tracking-[.18em] text-[#6B7C4A]">Transparent Pricing</p>
+            <h2 className="mt-3 font-serif text-4xl font-semibold text-[#3F4A2B]">Estimate your order before booking.</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[#5B5E51]">Use the estimator for a quick approximate price. Final pricing is confirmed after garment assessment.</p>
+            <PricingEstimator />
+          </div>
+        </section>
+
+        <section className="bg-[#F7F8F2] px-6 py-20 sm:px-8">
+          <div className="mx-auto max-w-6xl text-center">
+            <p className="text-xs font-bold uppercase tracking-[.18em] text-[#6B7C4A]">Customer Feedback</p>
+            <h2 className="mt-3 font-serif text-4xl font-semibold text-[#3F4A2B]">What our customers say.</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[#5B5E51]">See genuine customer feedback and ratings directly on Google.</p>
+            <ReviewsCarousel googleUrl={GOOGLE_BUSINESS_URL} />
+          </div>
+        </section>
+
+        <section className="bg-[#6B7C4A] px-6 py-16 text-center text-white sm:px-8">
+          <p className="text-xs font-bold uppercase tracking-[.18em] text-[#E7EBDC]">Ready for Effortless Laundry?</p>
+          <h2 className="mt-3 font-serif text-4xl font-semibold">Get {firstOrderDiscount}% off your first online order.</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[#F7F8F2]">Schedule your first pickup online today, or call us for custom and commercial laundry enquiries.</p>
+          <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
+            <Link href="/#book-pickup" className="rounded-md bg-white px-7 py-3.5 text-sm font-bold text-[#3F4A2B]">Book Your Pickup Now</Link>
+            <a href="tel:+919507111333" className="rounded-md border border-white/60 px-7 py-3.5 text-sm font-bold text-white">Call 9507111333</a>
+          </div>
         </section>
       </main>
       <SiteFooter />

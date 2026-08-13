@@ -15,10 +15,10 @@ import ReviewsCarousel from "@/components/ReviewsCarousel";
 import { GOOGLE_BUSINESS_URL, SITE_URL, branches } from "@/lib/site";
 
 const services = [
-  {icon:Sparkles,title:"Dry Cleaning",text:"Professional cleaning for delicate, premium and special-occasion garments.",href:"/dry-cleaning-ranchi"},
-  {icon:Wind,title:"Steam Press",text:"Crisp steam finishing for garments that are neat, fresh and ready to wear.",href:"/steam-press-ranchi"},
-  {icon:ShieldCheck,title:"Garment Polish",text:"Finishing care to refresh selected garments and improve presentation.",href:"/garment-polish-ranchi"},
-  {icon:Sparkles,title:"Darning & Repair",text:"Thoughtful mending for tears, snags and worn areas in clothes you value.",href:"/darning-ranchi"},
+  {icon:Sparkles,image:"/services/dry-cleaning.jpg",title:"Dry Cleaning",text:"Professional cleaning for delicate, premium and special-occasion garments.",href:"/dry-cleaning-ranchi"},
+  {icon:Wind,image:"/services/steam-pressing.jpg",title:"Steam Press",text:"Crisp steam finishing for garments that are neat, fresh and ready to wear.",href:"/steam-press-ranchi"},
+  {icon:ShieldCheck,image:"/services/garment-polish.jpg",title:"Garment Polish",text:"Finishing care to refresh selected garments and improve presentation.",href:"/garment-polish-ranchi"},
+  {icon:Sparkles,image:"/services/darning-repair.jpg",title:"Darning & Repair",text:"Thoughtful mending for tears, snags and worn areas in clothes you value.",href:"/darning-ranchi"},
 ];
 
 const steps = [
@@ -87,12 +87,17 @@ export default function Home(){
             <h2 className="mt-3 font-serif text-4xl font-semibold text-[#3F4A2B]">Care designed around your garments.</h2>
           </div>
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {services.map(({icon:Icon,title,text,href})=>
-              <Link href={href} key={title} className="group rounded-3xl border border-[#3F4A2B]/10 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-                <div className="grid h-14 w-14 place-items-center rounded-full bg-[#E7EBDC] text-[#6B7C4A]"><Icon size={22}/></div>
-                <h3 className="mt-5 font-serif text-xl font-semibold text-[#3F4A2B]">{title}</h3>
-                <p className="mt-3 text-sm leading-7 text-[#5B5E51]">{text}</p>
-                <span className="mt-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[.12em] text-[#6B7C4A]">Know more <ArrowRight size={14}/></span>
+            {services.map(({icon:Icon,image,title,text,href})=>
+              <Link href={href} key={title} className="group overflow-hidden rounded-3xl border border-[#3F4A2B]/10 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                <div className="relative h-44 w-full">
+                  <Image src={image} alt={`${title} at NewLife Dryclean`} fill sizes="(max-width:1024px) 50vw, 25vw" className="object-cover transition duration-500 group-hover:scale-105"/>
+                </div>
+                <div className="p-7">
+                  <div className="grid h-12 w-12 place-items-center rounded-full bg-[#E7EBDC] text-[#6B7C4A]"><Icon size={20}/></div>
+                  <h3 className="mt-5 font-serif text-xl font-semibold text-[#3F4A2B]">{title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-[#5B5E51]">{text}</p>
+                  <span className="mt-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[.12em] text-[#6B7C4A]">Know more <ArrowRight size={14}/></span>
+                </div>
               </Link>
             )}
           </div>
