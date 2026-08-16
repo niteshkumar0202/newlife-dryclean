@@ -72,16 +72,16 @@ export default function PickupForm() {
     window.open(`https://wa.me/919507111333?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
   }
 
-  const inputClass = "w-full rounded-2xl border border-[rgba(63,74,43,0.16)] bg-white px-4 py-3.5 text-[#2A2C24] outline-none transition placeholder:text-[#5B5E51]/55 focus:border-[#6B7C4A] focus:ring-4 focus:ring-[#6B7C4A]/10";
+  const inputClass = "w-full rounded-2xl border border-[rgba(63,74,43,0.16)] bg-white px-4 py-3.5 text-[#172033] outline-none transition placeholder:text-[#53657A]/55 focus:border-[#16835F] focus:ring-4 focus:ring-[#16835F]/10";
 
   return (
     <div className="overflow-hidden rounded-[2rem] border border-[rgba(63,74,43,0.16)] bg-white shadow-[0_24px_70px_rgba(63,74,43,0.10)]">
-      <div className="border-b border-[rgba(63,74,43,0.16)] bg-[#F7F8F2] px-6 py-7 md:px-9">
+      <div className="border-b border-[rgba(63,74,43,0.16)] bg-[#FFFCF5] px-6 py-7 md:px-9">
         <div className="flex items-start gap-4">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#6B7C4A] text-white"><ShoppingBag size={23}/></div>
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#16835F] text-white"><ShoppingBag size={23}/></div>
           <div>
-            <h3 className="text-xl font-bold text-[#2A2C24]">Book in under a minute</h3>
-            <p className="mt-1 text-sm leading-6 text-[#5B5E51]">Share the essentials now. Our team will collect the detailed address, garment count and special instructions on WhatsApp.</p>
+            <h3 className="text-xl font-bold text-[#172033]">Book in under a minute</h3>
+            <p className="mt-1 text-sm leading-6 text-[#53657A]">Share the essentials now. Our team will collect the detailed address, garment count and special instructions on WhatsApp.</p>
           </div>
         </div>
       </div>
@@ -89,36 +89,36 @@ export default function PickupForm() {
       <form onSubmit={handleSubmit} className="p-6 md:p-9">
         <div className="grid gap-5 md:grid-cols-2">
           <label className="block">
-            <span className="mb-2 flex items-center gap-2 text-sm font-semibold text-[#2A2C24]"><User size={16}/> Name *</span>
+            <span className="mb-2 flex items-center gap-2 text-sm font-semibold text-[#172033]"><User size={16}/> Name *</span>
             <input type="text" autoComplete="name" value={form.name} onChange={(e)=>updateField("name",e.target.value)} placeholder="Your name" className={inputClass}/>
           </label>
           <label className="block">
-            <span className="mb-2 flex items-center gap-2 text-sm font-semibold text-[#2A2C24]"><Phone size={16}/> Mobile *</span>
+            <span className="mb-2 flex items-center gap-2 text-sm font-semibold text-[#172033]"><Phone size={16}/> Mobile *</span>
             <input type="tel" inputMode="numeric" autoComplete="tel" maxLength={10} value={form.phone} onChange={(e)=>updateField("phone",e.target.value.replace(/\D/g,""))} placeholder="10-digit mobile number" className={inputClass}/>
           </label>
           <label className="block">
-            <span className="mb-2 flex items-center gap-2 text-sm font-semibold text-[#2A2C24]"><ShoppingBag size={16}/> Service *</span>
+            <span className="mb-2 flex items-center gap-2 text-sm font-semibold text-[#172033]"><ShoppingBag size={16}/> Service *</span>
             <select value={form.service} onChange={(e)=>updateField("service",e.target.value)} className={inputClass}>
               <option value="">Select service</option>
               {services.map((service)=><option key={service}>{service}</option>)}
             </select>
           </label>
           <label className="block">
-            <span className="mb-2 flex items-center gap-2 text-sm font-semibold text-[#2A2C24]"><MapPin size={16}/> Locality / Area *</span>
+            <span className="mb-2 flex items-center gap-2 text-sm font-semibold text-[#172033]"><MapPin size={16}/> Locality / Area *</span>
             <input type="text" autoComplete="address-level2" value={form.locality} onChange={(e)=>updateField("locality",e.target.value)} placeholder="e.g. Kanke, Kadru, Lalpur" className={inputClass}/>
           </label>
           <label className="block md:col-span-2">
-            <span className="mb-2 flex items-center gap-2 text-sm font-semibold text-[#2A2C24]"><CalendarDays size={16}/> Preferred pickup date *</span>
+            <span className="mb-2 flex items-center gap-2 text-sm font-semibold text-[#172033]"><CalendarDays size={16}/> Preferred pickup date *</span>
             <input type="date" min={minimumDate} value={form.pickupDate} onChange={(e)=>updateField("pickupDate",e.target.value)} className={inputClass}/>
           </label>
         </div>
 
         {error && <p role="alert" className="mt-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">{error}</p>}
 
-        <button type="submit" className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#6B7C4A] px-6 py-4 font-semibold text-white transition hover:bg-[#4F5B36] sm:w-auto">
+        <button type="submit" className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#16835F] px-6 py-4 font-semibold text-white transition hover:bg-[#087A63] sm:w-auto">
           <MessageCircle size={18}/> Continue on WhatsApp
         </button>
-        <p className="mt-4 text-xs leading-5 text-[#5B5E51]">Pickup availability and timing are confirmed by the NewLife team. Minimum home-pickup order: ₹1,000.</p>
+        <p className="mt-4 text-xs leading-5 text-[#53657A]">Pickup availability and timing are confirmed by the NewLife team. Minimum home-pickup order: ₹1,000.</p>
       </form>
     </div>
   );

@@ -35,14 +35,14 @@ export default function AboutPage() {
     <>
       <SiteHeader />
       <main>
-        <section className="relative overflow-hidden bg-gradient-to-b from-[#ECFDF5] via-[#f8fbff] to-white px-6 py-24 md:px-12 md:py-32">
+        <section className="relative overflow-hidden bg-gradient-to-b from-[#E8FBF5] via-[#f8fbff] to-white px-6 py-24 md:px-12 md:py-32">
           <div className="mx-auto max-w-5xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#c79a2b]">About NewLife</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#C99A2E]">About NewLife</p>
             <h1 className="mx-auto mt-5 max-w-4xl text-5xl font-semibold leading-tight tracking-[-0.045em] text-[#172033] md:text-7xl">
               Garment Care Built Around
-              <span className="block text-[#176B4D]">Quality & Convenience.</span>
+              <span className="block text-[#0B8F71]">Quality & Convenience.</span>
             </h1>
-            <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-[#5D6B62] md:text-xl">
+            <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-[#53657A] md:text-xl">
               NewLife Dryclean provides professional dry cleaning, garment finishing and convenient pickup services for customers across Ranchi.
             </p>
           </div>
@@ -51,12 +51,12 @@ export default function AboutPage() {
         <section className="px-6 py-24 md:px-12">
           <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-2 lg:items-center">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#c79a2b]">Our Approach</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#C99A2E]">Our Approach</p>
               <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] text-[#172033] md:text-5xl">Every Garment Deserves the Right Care.</h2>
-              <p className="mt-7 leading-8 text-[#5D6B62]">
+              <p className="mt-7 leading-8 text-[#53657A]">
                 Clothing can carry everyday utility, personal style and important memories. A bridal outfit, formal suit or favourite daily garment may each need a different approach to cleaning and finishing.
               </p>
-              <p className="mt-5 leading-8 text-[#5D6B62]">
+              <p className="mt-5 leading-8 text-[#53657A]">
                 Our goal is simple: provide reliable garment care with attention to the item in front of us and make the service convenient through local branches and home pickup.
               </p>
             </div>
@@ -65,9 +65,9 @@ export default function AboutPage() {
                 const Icon = item.icon;
                 return (
                   <div key={item.title} className="rounded-3xl border border-[#dbe5f4] bg-[#f8fbff] p-7">
-                    <Icon size={25} className="text-[#176B4D]" />
+                    <Icon size={25} className="text-[#0B8F71]" />
                     <h3 className="mt-5 text-lg font-semibold text-[#172033]">{item.title}</h3>
-                    <p className="mt-3 text-sm leading-7 text-[#5D6B62]">{item.text}</p>
+                    <p className="mt-3 text-sm leading-7 text-[#53657A]">{item.text}</p>
                   </div>
                 );
               })}
@@ -75,10 +75,10 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="bg-[#176B4D] px-6 py-24 text-white md:px-12">
+        <section className="bg-[#0B8F71] px-6 py-24 text-white md:px-12">
           <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-2 lg:items-center">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#c79a2b]">Garment Care Process</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#C99A2E]">Garment Care Process</p>
               <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] md:text-5xl">Care From Inspection to Finish.</h2>
               <p className="mt-6 max-w-xl leading-8 text-white/65">A structured workflow helps us give each garment appropriate attention before it returns to you.</p>
             </div>
@@ -100,12 +100,12 @@ export default function AboutPage() {
                     </div>
                     <div className="flex items-center justify-between gap-5 px-6 py-5">
                       <div className="flex items-center gap-5">
-                        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#d6a329] font-semibold text-[#176B4D]">
+                        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#C99A2E] font-semibold text-[#0B8F71]">
                           {index + 1}
                         </span>
                         <span className="font-semibold">{step.title}</span>
                       </div>
-                      <CheckCircle2 size={20} className="shrink-0 text-[#d6a329]" />
+                      <CheckCircle2 size={20} className="shrink-0 text-[#C99A2E]" />
                     </div>
                   </div>
                 </div>
@@ -117,26 +117,26 @@ export default function AboutPage() {
         <section className="px-6 py-24 md:px-12">
           <div className="mx-auto max-w-7xl">
             <div className="mx-auto max-w-3xl text-center">
-              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#c79a2b]">Local Presence</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#C99A2E]">Local Presence</p>
               <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] text-[#172033] md:text-5xl">Serving Ranchi Through Three Locations.</h2>
             </div>
             <div className="mt-14 grid gap-6 md:grid-cols-3">
               {branches.map((branch) => (
                 <Link key={branch.slug} href={`/locations/${branch.slug}`} className="rounded-3xl border border-[#dbe5f4] bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-                  <MapPin size={27} className="text-[#176B4D]" />
+                  <MapPin size={27} className="text-[#0B8F71]" />
                   <h3 className="mt-5 text-2xl font-semibold text-[#172033]">{branch.name}</h3>
-                  <p className="mt-3 leading-7 text-[#5D6B62]">{branch.shortAddress}</p>
-                  <span className="mt-6 inline-flex items-center gap-2 font-semibold text-[#176B4D]">View branch <ArrowRight size={16} /></span>
+                  <p className="mt-3 leading-7 text-[#53657A]">{branch.shortAddress}</p>
+                  <span className="mt-6 inline-flex items-center gap-2 font-semibold text-[#0B8F71]">View branch <ArrowRight size={16} /></span>
                 </Link>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="bg-[#ECFDF5] px-6 py-20 text-center md:px-12">
+        <section className="bg-[#E8FBF5] px-6 py-20 text-center md:px-12">
           <h2 className="text-4xl font-semibold tracking-[-0.03em] text-[#172033] md:text-5xl">Give Your Clothes the Care They Deserve.</h2>
-          <p className="mx-auto mt-5 max-w-2xl leading-8 text-[#5D6B62]">Visit a branch or request a convenient home pickup in Ranchi.</p>
-          <Link href="/#pickup" className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#176B4D] px-8 py-4 font-semibold text-white">Book a Pickup <ArrowRight size={18} /></Link>
+          <p className="mx-auto mt-5 max-w-2xl leading-8 text-[#53657A]">Visit a branch or request a convenient home pickup in Ranchi.</p>
+          <Link href="/#pickup" className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#0B8F71] px-8 py-4 font-semibold text-white">Book a Pickup <ArrowRight size={18} /></Link>
         </section>
       </main>
       <SiteFooter />

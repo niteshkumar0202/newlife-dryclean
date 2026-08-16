@@ -63,40 +63,40 @@ export default function ServicesPage() {
   return (
     <>
       <SiteHeader />
-      <main className="bg-white text-[#2A2C24]">
-        <section className="bg-[#F7F8F2] px-6 py-16 sm:px-8 lg:py-20">
+      <main className="bg-white text-[#172033]">
+        <section className="bg-[#FFFCF5] px-6 py-16 sm:px-8 lg:py-20">
           <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.02fr_.98fr]">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[.18em] text-[#6B7C4A]">
+              <p className="text-xs font-bold uppercase tracking-[.18em] text-[#16835F]">
                 NewLife Dryclean Services
               </p>
-              <h1 className="mt-5 font-serif text-5xl font-semibold leading-[1.02] text-[#29461F] sm:text-6xl lg:text-7xl">
+              <h1 className="mt-5 font-serif text-5xl font-semibold leading-[1.02] text-[#173F35] sm:text-6xl lg:text-7xl">
                 Fresh, Clean Laundry—
                 <br />
                 Delivered to Your Door
               </h1>
-              <p className="mt-6 max-w-xl text-lg leading-8 text-[#42483B]">
+              <p className="mt-6 max-w-xl text-lg leading-8 text-[#53657A]">
                 Take laundry off your to-do list. We handle your clothes with professional care using eco-friendly detergents, precise fabric treatments, and reliable pickup and delivery across Ranchi.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
                   href="/#book-pickup"
-                  className="inline-flex items-center justify-center gap-2 rounded-md bg-[#45651F] px-7 py-4 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#29461F]"
+                  className="inline-flex items-center justify-center gap-2 rounded-md bg-[#0B8F71] px-7 py-4 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#173F35]"
                 >
                   <Truck size={17} />
                   Schedule a Free Pickup
                 </Link>
                 <Link
                   href="#pricing"
-                  className="inline-flex items-center justify-center gap-2 rounded-md border border-[#45651F] bg-white px-7 py-4 text-sm font-bold text-[#29461F] transition hover:bg-[#45651F] hover:text-white"
+                  className="inline-flex items-center justify-center gap-2 rounded-md border border-[#0B8F71] bg-white px-7 py-4 text-sm font-bold text-[#173F35] transition hover:bg-[#0B8F71] hover:text-white"
                 >
                   View Pricing
                   <ArrowRight size={16} />
                 </Link>
               </div>
 
-              <div className="mt-8 grid grid-cols-2 gap-3 text-xs font-semibold text-[#3F4A2B] sm:grid-cols-4">
+              <div className="mt-8 grid grid-cols-2 gap-3 text-xs font-semibold text-[#173F35] sm:grid-cols-4">
                 <span>✓ Free Pickup & Delivery</span>
                 <span>✓ Fabric-Specific Care</span>
                 <span>✓ Fast Turnaround</span>
@@ -114,8 +114,8 @@ export default function ServicesPage() {
                 className="object-cover object-center"
               />
               <div className="absolute inset-x-5 bottom-5 rounded-2xl bg-white/92 p-4 backdrop-blur-md">
-                <p className="text-sm font-bold text-[#3F4A2B]">Freshly cleaned. Ready to wear.</p>
-                <p className="mt-1 text-xs leading-5 text-[#5B5E51]">
+                <p className="text-sm font-bold text-[#173F35]">Freshly cleaned. Ready to wear.</p>
+                <p className="mt-1 text-xs leading-5 text-[#53657A]">
                   Professional garment care with convenient pickup and delivery across Ranchi.
                 </p>
               </div>
@@ -126,15 +126,15 @@ export default function ServicesPage() {
         <section className="px-6 py-20 sm:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="text-center">
-              <p className="text-xs font-bold uppercase tracking-[.18em] text-[#6B7C4A]">Why Choose Us</p>
-              <h2 className="mt-3 font-serif text-4xl font-semibold text-[#3F4A2B]">Convenient service. Professional care.</h2>
+              <p className="text-xs font-bold uppercase tracking-[.18em] text-[#16835F]">Why Choose Us</p>
+              <h2 className="mt-3 font-serif text-4xl font-semibold text-[#173F35]">Convenient service. Professional care.</h2>
             </div>
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {benefits.map(({ icon: Icon, title, text }) => (
-                <div key={title} className="rounded-3xl border border-[#3F4A2B]/10 bg-white p-7 shadow-sm">
-                  <div className="grid h-14 w-14 place-items-center rounded-full bg-[#E7EBDC] text-[#6B7C4A]"><Icon size={22} /></div>
-                  <h3 className="mt-5 font-serif text-xl font-semibold text-[#3F4A2B]">{title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-[#5B5E51]">{text}</p>
+                <div key={title} className="rounded-3xl border border-[#173F35]/10 bg-white p-7 shadow-sm">
+                  <div className="grid h-14 w-14 place-items-center rounded-full bg-[#DDF7F2] text-[#16835F]"><Icon size={22} /></div>
+                  <h3 className="mt-5 font-serif text-xl font-semibold text-[#173F35]">{title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-[#53657A]">{text}</p>
                 </div>
               ))}
             </div>
@@ -142,29 +142,29 @@ export default function ServicesPage() {
         </section>
 
         <section className="px-6 pb-20 sm:px-8">
-          <div className="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-[#3F4A2B]/10 bg-white shadow-sm">
+          <div className="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-[#173F35]/10 bg-white shadow-sm">
             <div className="relative h-[280px] sm:h-[380px]">
-              <Image src="/services/pickup-delivery.jpg" alt="NewLife Dryclean pickup and delivery service" fill sizes="100vw" className="object-contain bg-[#F7F8F2]" />
+              <Image src="/services/pickup-delivery.jpg" alt="NewLife Dryclean pickup and delivery service" fill sizes="100vw" className="object-contain bg-[#FFFCF5]" />
             </div>
           </div>
         </section>
 
-        <section className="bg-[#F7F8F2] px-6 py-20 sm:px-8">
+        <section className="bg-[#FFFCF5] px-6 py-20 sm:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="text-center">
-              <p className="text-xs font-bold uppercase tracking-[.18em] text-[#6B7C4A]">Our Services</p>
-              <h2 className="mt-3 font-serif text-4xl font-semibold text-[#3F4A2B]">Everything your clothes need.</h2>
+              <p className="text-xs font-bold uppercase tracking-[.18em] text-[#16835F]">Our Services</p>
+              <h2 className="mt-3 font-serif text-4xl font-semibold text-[#173F35]">Everything your clothes need.</h2>
             </div>
             <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {services.map(({ icon: Icon, image, title, text }) => (
-                <div key={title} className="overflow-hidden rounded-3xl border border-[#3F4A2B]/10 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                <div key={title} className="overflow-hidden rounded-3xl border border-[#173F35]/10 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
                   <div className="relative h-52 w-full">
                     <Image src={image} alt={`${title} service at NewLife Dryclean`} fill sizes="(max-width: 1024px) 50vw, 33vw" className="object-cover" />
                   </div>
                   <div className="p-7">
-                    <div className="grid h-12 w-12 place-items-center rounded-full bg-[#E7EBDC] text-[#6B7C4A]"><Icon size={20} /></div>
-                    <h3 className="mt-5 font-serif text-xl font-semibold text-[#3F4A2B]">{title}</h3>
-                    <p className="mt-3 text-sm leading-7 text-[#5B5E51]">{text}</p>
+                    <div className="grid h-12 w-12 place-items-center rounded-full bg-[#DDF7F2] text-[#16835F]"><Icon size={20} /></div>
+                    <h3 className="mt-5 font-serif text-xl font-semibold text-[#173F35]">{title}</h3>
+                    <p className="mt-3 text-sm leading-7 text-[#53657A]">{text}</p>
                   </div>
                 </div>
               ))}
@@ -174,53 +174,53 @@ export default function ServicesPage() {
 
         <section className="px-6 py-20 sm:px-8">
           <div className="mx-auto max-w-7xl text-center">
-            <p className="text-xs font-bold uppercase tracking-[.18em] text-[#6B7C4A]">How It Works</p>
-            <h2 className="mt-3 font-serif text-4xl font-semibold text-[#3F4A2B]">Four simple steps to fresh laundry.</h2>
+            <p className="text-xs font-bold uppercase tracking-[.18em] text-[#16835F]">How It Works</p>
+            <h2 className="mt-3 font-serif text-4xl font-semibold text-[#173F35]">Four simple steps to fresh laundry.</h2>
             <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
               {steps.map((step) => (
                 <div key={step.no}>
-                  <div className="mx-auto grid h-10 w-10 place-items-center rounded-full bg-[#6B7C4A] font-serif text-xs text-white">{step.no}</div>
-                  <h3 className="mt-4 font-semibold text-[#3F4A2B]">{step.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-[#5B5E51]">{step.text}</p>
+                  <div className="mx-auto grid h-10 w-10 place-items-center rounded-full bg-[#16835F] font-serif text-xs text-white">{step.no}</div>
+                  <h3 className="mt-4 font-semibold text-[#173F35]">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#53657A]">{step.text}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="bg-[#F7F8F2] px-6 py-20 sm:px-8">
+        <section className="bg-[#FFFCF5] px-6 py-20 sm:px-8">
           <div className="mx-auto max-w-6xl text-center">
-            <p className="text-xs font-bold uppercase tracking-[.18em] text-[#6B7C4A]">Before & After</p>
-            <h2 className="mt-3 font-serif text-4xl font-semibold text-[#3F4A2B]">See the NewLife difference.</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[#5B5E51]">Compare a visibly soiled shirt with a clean, professionally finished result.</p>
+            <p className="text-xs font-bold uppercase tracking-[.18em] text-[#16835F]">Before & After</p>
+            <h2 className="mt-3 font-serif text-4xl font-semibold text-[#173F35]">See the NewLife difference.</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[#53657A]">Compare a visibly soiled shirt with a clean, professionally finished result.</p>
             <div className="mt-10"><BeforeAfter /></div>
           </div>
         </section>
 
         <section id="pricing" className="px-6 py-20 sm:px-8">
           <div className="mx-auto max-w-6xl text-center">
-            <p className="text-xs font-bold uppercase tracking-[.18em] text-[#6B7C4A]">Transparent Pricing</p>
-            <h2 className="mt-3 font-serif text-4xl font-semibold text-[#3F4A2B]">Estimate your order before booking.</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[#5B5E51]">Use the estimator for a quick approximate price. Final pricing is confirmed after garment assessment.</p>
+            <p className="text-xs font-bold uppercase tracking-[.18em] text-[#16835F]">Transparent Pricing</p>
+            <h2 className="mt-3 font-serif text-4xl font-semibold text-[#173F35]">Estimate your order before booking.</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[#53657A]">Use the estimator for a quick approximate price. Final pricing is confirmed after garment assessment.</p>
             <PricingEstimator />
           </div>
         </section>
 
-        <section className="bg-[#F7F8F2] px-6 py-20 sm:px-8">
+        <section className="bg-[#FFFCF5] px-6 py-20 sm:px-8">
           <div className="mx-auto max-w-6xl text-center">
-            <p className="text-xs font-bold uppercase tracking-[.18em] text-[#6B7C4A]">Customer Feedback</p>
-            <h2 className="mt-3 font-serif text-4xl font-semibold text-[#3F4A2B]">What our customers say.</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[#5B5E51]">See genuine customer feedback and ratings directly on Google.</p>
+            <p className="text-xs font-bold uppercase tracking-[.18em] text-[#16835F]">Customer Feedback</p>
+            <h2 className="mt-3 font-serif text-4xl font-semibold text-[#173F35]">What our customers say.</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[#53657A]">See genuine customer feedback and ratings directly on Google.</p>
             <ReviewsCarousel googleUrl={GOOGLE_BUSINESS_URL} />
           </div>
         </section>
 
-        <section className="bg-[#6B7C4A] px-6 py-16 text-center text-white sm:px-8">
-          <p className="text-xs font-bold uppercase tracking-[.18em] text-[#E7EBDC]">Ready for Effortless Laundry?</p>
+        <section className="bg-[#16835F] px-6 py-16 text-center text-white sm:px-8">
+          <p className="text-xs font-bold uppercase tracking-[.18em] text-[#DDF7F2]">Ready for Effortless Laundry?</p>
           <h2 className="mt-3 font-serif text-4xl font-semibold">Get 15% off your first online order.</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[#F7F8F2]">Schedule your first pickup online today, or call us for custom and commercial laundry enquiries.</p>
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[#FFFCF5]">Schedule your first pickup online today, or call us for custom and commercial laundry enquiries.</p>
           <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-            <Link href="/#book-pickup" className="rounded-md bg-white px-7 py-3.5 text-sm font-bold text-[#3F4A2B]">Book Your Pickup Now</Link>
+            <Link href="/#book-pickup" className="rounded-md bg-white px-7 py-3.5 text-sm font-bold text-[#173F35]">Book Your Pickup Now</Link>
             <a href="tel:+919507111333" className="rounded-md border border-white/60 px-7 py-3.5 text-sm font-bold text-white">Call 9507111333</a>
           </div>
         </section>

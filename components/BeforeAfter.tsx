@@ -32,12 +32,12 @@ export default function BeforeAfter() {
 
       <div>
         <div className="inline-flex items-center gap-2 rounded-full border border-[#dbe5f4] bg-white px-4 py-2 text-sm font-semibold text-[#1557c0] shadow-sm">
-          <Sparkles size={16} className="text-[#c79a2b]" />
+          <Sparkles size={16} className="text-[#C99A2E]" />
           Before & After
         </div>
         <h2 className="mt-6 text-4xl font-semibold leading-tight tracking-[-0.035em] text-[#10234a] md:text-5xl">See the NewLife<span className="block text-[#1557c0]">Difference.</span></h2>
-        <p className="mt-6 leading-8 text-[#5B5E51]">Drag the slider to compare a visibly soiled shirt with a fresh, professionally finished shirt.</p>
-        <div className="mt-7 rounded-2xl border border-[#e2eaf6] bg-[#f6f9ff] p-5 text-sm leading-6 text-[#5B5E51]"><strong className="text-[#10234a]">Illustrative image:</strong> replace this visual with real NewLife before-and-after photographs as you collect them for the strongest customer trust.</div>
+        <p className="mt-6 leading-8 text-[#53657A]">Drag the slider to compare a visibly soiled shirt with a fresh, professionally finished shirt.</p>
+        <div className="mt-7 rounded-2xl border border-[#e2eaf6] bg-[#f6f9ff] p-5 text-sm leading-6 text-[#53657A]"><strong className="text-[#10234a]">Illustrative image:</strong> replace this visual with real NewLife before-and-after photographs as you collect them for the strongest customer trust.</div>
         <a href="#pickup" className="mt-8 inline-flex rounded-full bg-[#1557c0] px-7 py-4 font-semibold text-white transition hover:bg-[#0f469d]">Book Garment Care</a>
       </div>
     </div>

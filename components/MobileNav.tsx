@@ -21,7 +21,7 @@ export default function MobileNav() {
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}
-        className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#dbe5f4] bg-white text-[#6B7C4A]"
+        className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#dbe5f4] bg-white text-[#16835F]"
         aria-label={open ? "Close navigation" : "Open navigation"}
         aria-expanded={open}
       >
@@ -36,7 +36,7 @@ export default function MobileNav() {
                 key={href}
                 href={href}
                 onClick={() => setOpen(false)}
-                className="border-b border-[#dbe5f4] py-4 font-medium text-[#2A2C24]"
+                className="border-b border-[#dbe5f4] py-4 font-medium text-[#172033]"
               >
                 {label}
               </Link>
@@ -45,7 +45,7 @@ export default function MobileNav() {
             <Link
               href="/#pickup"
               onClick={() => setOpen(false)}
-              className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-[#6B7C4A] px-6 py-4 font-semibold text-white"
+              className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-[#16835F] px-6 py-4 font-semibold text-white"
             >
               Book a Pickup <ArrowRight size={17} />
             </Link>
